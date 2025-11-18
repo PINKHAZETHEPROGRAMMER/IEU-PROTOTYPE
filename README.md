@@ -11,3 +11,4 @@ Características principales:
 
 Implementacion de responsividad, dashboard dinámico con posts, sistema de usuarios (admin / usuario normal), microinteracciones visuales en botones y accesibilidad basica.
 
+POR FAVOR, inice con la carpeta: Inicio de Sesion
