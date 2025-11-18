@@ -1,0 +1,133 @@
+/* =============================================
+   ESTILOS ÚNICOS DE GUARDADOS.HTML
+   (Todo lo demás está en global.css)
+   ============================================== */
+
+.posts-container {
+    max-width: 1200px;
+    margin: 20px auto 40px; /* Margen chico, body ya empuja */
+    padding: 0 20px;
+}
+
+.posts-container h1 {
+    font-size: calc(2em * var(--font-scale, 1));
+    font-family: "Libre Franklin", sans-serif;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: stretch; /* Misma altura */
+}
+
+.aviso-vacio {
+    font-size: 1.2em;
+    color: #666;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+/* --- Estilos de Tarjeta de Post (copiados de perfil.css) --- */
+.post-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.post-user h4 { 
+    margin: 0; 
+    color: #333;
+    font-size: calc(1.1em * var(--font-scale, 1));
+}
+.post-user span { 
+    font-size: calc(0.8em * var(--font-scale, 1)); 
+    color: #666; 
+}
+.post-content { flex-grow: 1; }
+.post-content h3 {
+    font-size: calc(1.2em * var(--font-scale, 1));
+}
+.post-card p { 
+    margin: 0 0 15px 0; 
+    color: #555; 
+    line-height: 1.5; 
+    font-size: calc(1em * var(--font-scale, 1));
+}
+.post-stats { 
+    display: flex; 
+    gap: 15px; 
+    font-size: calc(0.9em * var(--font-scale, 1)); 
+    color: #666; 
+    margin-top: 15px; 
+}
+.post-stats i { margin-right: 5px; }
+.post-content .post-image { width: 100%; margin-top: 15px; overflow: hidden; border-radius: 10px; }
+.post-content .post-image img, .post-content .post-image video { width: 100%; height: auto; display: block; max-height: 400px; object-fit: cover; }
+.post-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0; }
+.tag { background: #e0e0e0; color: #555; padding: 3px 8px; border-radius: 12px; font-size: calc(0.8em * var(--font-scale, 1)); }
+.post-card.post-card-no-media .post-content { display: flex; flex-direction: column; justify-content: center; min-height: 150px; }
+.post-card.post-card-no-media .post-content h3 { font-size: calc(1.5em * var(--font-scale, 1)); text-align: center; }
+.post-card.post-card-no-media .post-content p { font-size: calc(1.25em * var(--font-scale, 1)); text-align: center; font-weight: 500; }
+
+/* Botón de "Quitar" */
+.post-stats .post-btn {
+    background: none; border: none; color: #666; cursor: pointer;
+    font-size: calc(0.9em * var(--font-scale, 1)); 
+    transition: color 0.3s ease; display: flex;
+    align-items: center; gap: 5px; font-family: "Libre Franklin", sans-serif;
+}
+.post-stats .post-btn:hover { color: #e67e22; }
+.post-stats .post-btn.saved { color: #f39c12; }
+
+/* --- Dark Mode (Específico de Guardados) --- */
+body.dark-mode .posts-container h1 { color: #f3f3f3; }
+body.dark-mode .aviso-vacio { color: #999; }
+body.dark-mode .post-card { background: #1f2229; }
+body.dark-mode .post-user h4, body.dark-mode .post-card p { color: #f7fafc; }
+body.dark-mode .post-user span, body.dark-mode .post-stats { color: #cbd5e0; }
+body.dark-mode .post-card.post-card-no-media p { color: #e0e0e0; }
+body.dark-mode .post-card.post-card-no-media h3 { color: #f8f9fa; }
+body.dark-mode .tag { background: #4a5568; color: #cbd5e0; }
+body.dark-mode .post-stats .post-btn { color: #cbd5e0; }
+
+/* --- Responsive (Específico de Guardados) --- */
+@media (max-width: 768px) {
+    .posts-container {
+        margin-top: 20px;
+        padding: 0 15px;
+    }
+    .posts-container h1 {
+        font-size: 1.8em;
+        text-align: center;
+    }
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 480px) {
+    .posts-container {
+        margin-top: 15px;
+    }
+    .posts-container h1 {
+        font-size: 1.5em;
+    }
+}

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - INFOFUT Mundial</title>
+    
+    <link rel="stylesheet" href="../GLOBAL 1.0/global.css">
+    
+    <link rel="stylesheet" href="TLAdmin.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configuración de Accesibilidad</h2>
+                <button id="close-modal-btn" class="modal-close-btn" aria-label="Configracion Accesibilidad">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-option">
+                    <label for="font-size-slider">Tamaño del Texto</label>
+                    <input type="range" id="font-size-slider" min="0.8" max="1.5" step="0.1" value="1">
+                    <span class="slider-value">Normal</span>
+                </div>
+                <hr class="modal-divider">
+                <div class="setting-option">
+                    <label>Lector de Publicaciones</label>
+                    <button id="tts-toggle-btn" class="btn-primary" aria-label="Texto a Voz">
+                        <i class="fas fa-play"></i> Activar Lector
+                    </button>
+                    <p class="helper-text" id="tts-helper-text">
+                        Esta función está disponible en las páginas de perfil y en el inicio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeSidebar" aria-label="Salir del Menu hamburguesa">✕</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="javascript:void(0);" onclick="redirectToHome()" class="sidebar-link" id="sidebar-link-inicio">
+                <div class="input-simulado"><h3>Inicio</h3></div>
+            </a>
+            
+            <a href="../Mundiales/Mundiales.html" class="sidebar-link" id="sidebar-link-mundiales">
+                <div class="input-simulado"><h3>Mundiales</h3></div>
+            </a>
+            
+            <a href="../Perfil/perfil.html" class="sidebar-link" id="sidebar-link-perfil">
+                <div class="input-simulado"><h3>Perfil</h3></div>
+            </a>
+            
+            <a href="../Saved/guardados.html" class="sidebar-link" id="sidebar-link-buscar">
+                <div class="input-simulado"><h3>Guardados</h3></div>
+            </a>
+            
+            <a href="../Inicio de sesion/login.html" class="sidebar-link"><div class="input-simulado"><h3>Cerrar Sesión</h3></div></a>
+            <a href="../Publicar/Publicar.html" class="sidebar-link"><div class="input-simulado"><h3>Publicar</h3></div></a>
+            <div class="sidebar-link" id="open-settings-btn" style="cursor: pointer;">
+                <div class="input-simulado"><h3><i class="fas fa-cog"></i> Configuración</h3></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="Container">
+        <button class="menu-hamburguesa" id="openSidebar">☰</button>
+        <a href="../Pagina inicio/TL.html" class="logo-link">
+            <img src="../Assets/Logo.png" alt="Logo" class="Logo">
+        </a>
+        <form id="search-form" class="search-box">
+            <input type="text" id="city" class="search-input" placeholder="Buscar..." name="q" required>
+            <button type="button" class="search-button" id="btnsearch">🔎</button>
+        </form>
+        <div class="Moodnight">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </div>
+    </header>
+
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../Assets/Argentina.jpg" alt="Argentina Campeón">
+            </div>
+            <div class="carousel-item">
+                <img src="../Assets/Francia.jpg" alt="Francia Campeón">
+            </div>
+            <div class="carousel-item">
+                <img src="../Assets/España.jpg" alt="España Campeón">
+            </div>
+        </div>
+        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
+    </div>
+
+    <section class="stats-section">
+        <h2>Estadísticas del Mundial</h2>
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">⚽</div>
+                <div class="stat-value">142</div>
+                <div class="stat-label">Goles Totales</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👑</div>
+                <div class="stat-value">8</div>
+                <div class="stat-label">Máximo Goleador</div>
+                <div class="stat-detail">Kylian Mbappé</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔄</div>
+                <div class="stat-value">48</div>
+                <div class="stat-label">Partidos Jugados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value">64%</div>
+                <div class="stat-label">Precisión Tiros</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="Title2"> 
+        <h1 id="descubreBtn">¡Descubre todo sobre el mundial aquí!</h1>
+    </div>
+
+    <section class="featured-posts">
+        <h2>Publicaciones Destacadas</h2>
+        <div class="posts-grid">
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="../Assets/Nerd2.jpg"alt="Usuario" class="post-avatar">
+                    <div class="post-user">
+                        <h4>FutbolTotal</h4>
+                        <span>Hace 2 horas</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>¡Increíble remate de Messi en el último partido! ¿Creen que superará el récord de goles en mundiales?</p>
+                    <div class="post-tags">
+                        <span class="tag">#Messi</span>
+                        <span class="tag">#Argentina</span>
+                        <span class="tag">#Récord</span>
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <button class="post-btn"><i class="far fa-heart"></i> 245</button>
+                    <button class="post-btn"><i class="far fa-comment"></i> 89</button>
+                    <button class="post-btn"><i class="far fa-bookmark"></i></button>
+                </div>
+            </div>
+            
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="../Assets/Nerd1.webp" alt="Usuario" class="post-avatar">
+                    <div class="post-user">
+                        <h4>AnalistaFut</h4>
+                        <span>Hace 5 horas</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Análisis táctico del sistema 4-3-3 que está dominando el torneo. ¿Qué equipo lo ejecuta mejor?</p>
+                    <div class="post-image">
+                        <img src="../Assets/Nerd2.jpg" alt="Análisis táctico">
+                    </div>
+                    <div class="post-tags">
+                        <span class="tag">#Táctica</span>
+                        <span class="tag">#Análisis</span>
+                        <span class="tag">#Fútbol</span>
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <button class="post-btn"><i class="far fa-heart"></i> 189</button>
+                    <button class="post-btn"><i class="far fa-comment"></i> 42</button>
+                    <button class="post-btn"><i class="far fa-bookmark"></i></button>
+                </div>
+            </div>
+            
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="../Assets/Nerd3.jpg" alt="Usuario" class="post-avatar">
+                    <div class="post-user">
+                        <h4>MundialNews</h4>
+                        <span>Ayer</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Lesiones que están afectando a las selecciones: ¿Qué equipos saldrán más perjudicados?</p>
+                    <div class="post-tags">
+                        <span class="tag">#Lesiones</span>
+                        <span class="tag">#Selecciones</span>
+                        <span class="tag">#Mundial</span>
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <button class="post-btn"><i class="far fa-heart"></i> 156</button>
+                    <button class="post-btn"><i class="far fa-comment"></i> 33</button>
+                    <button class="post-btn"><i class="far fa-bookmark"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="user-posts-section">
+        <h2>Publicaciones de Usuarios</h2>
+        <div id="userPostsContainer" class="posts-grid">
+            </div>
+    </section>
+
+    <section class="top-players">
+        <h2>Jugadores Destacados</h2>
+        <div class="players-carousel">
+            <div class="player-card">
+                <div class="player-image">
+                    <img src="../Assets/messi.jpg" alt="Lionel Messi">
+                </div>
+                <div class="player-info">
+                    <h3>Lionel Messi</h3>
+                    <p>Argentina</p>
+                    </div>
+            </div>
+            <div class="player-card">
+                <div class="player-image">
+                    <img src="../Assets/Mbappe.webp" alt="Kylian Mbappé">
+                </div>
+                <div class="player-info">
+                    <h3>Kylian Mbappé</h3>
+                    <p>Francia</p>
+                    </div>
+            </div>
+            <div class="player-card">
+                <div class="player-image">
+                    <img src="../Assets/Neymar.webp" alt="Neymar Jr">
+                </div>
+                <div class="player-info">
+                    <h3>Neymar Jr</h3>
+                    <p>Brasil</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="schedule-container">
+        </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 INFOFUT. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../GLOBAL 1.0/global.js"></script>
+
+    <script>
+
+        // --- DEFINIR QUIÉN SOY (Para saber quién comenta) ---
+        // Esto simula la sesión del usuario actual
+        const currentUserData = (userType === 'admin') 
+            ? { nombre: "Marco", username: "@MakoMako", avatar: "../Assets/Chucho.jpg" }
+            : { nombre: "Barbara", username: "@BarbaraCodes", avatar: "../Assets/Santi.jpg" };
+        
+        /* --- Lógica del Carrusel --- */
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.carousel-item');
+        const total = items.length;
+
+        function showSlide(index) {
+            const inner = document.querySelector('.carousel-inner');
+            // Corregido para 3 imágenes
+            if (inner) inner.style.transform = `translateX(-${index * 33.333}%)`;
+        }
+        
+        const nextBtn = document.querySelector('.next');
+        const prevBtn = document.querySelector('.prev');
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % total;
+                showSlide(currentIndex);
+            });
+        }
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + total) % total;
+                showSlide(currentIndex);
+            });
+        }
+        // Descomenta si quieres carrusel automático
+        // setInterval(() => {
+        //     currentIndex = (currentIndex + 1) % total;
+        //     showSlide(currentIndex);
+        // }, 5000);
+
+        /* --- Lógica de Carga de Posts y Botones --- */
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Link del título "Descubre"
+            const descubreBtn = document.getElementById('descubreBtn');
+            if (descubreBtn) {
+                descubreBtn.style.cursor = 'pointer';
+                descubreBtn.addEventListener('click', function () {
+                    window.location.href = '../Mundiales/Mundiales.html';  
+                });
+            }
+
+            // Cargar posts de usuarios
+            cargarPublicacionesUsuarios();
+            
+            // Botones de posts ESTÁTICOS (los de "Destacados")
+            document.querySelectorAll('.featured-posts .post-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.querySelector('.fa-heart')) {
+                        this.classList.toggle('liked');
+                    } else if (this.querySelector('.fa-bookmark')) {
+                        this.classList.toggle('saved');
+                        this.innerHTML = this.classList.contains('saved') 
+                            ? '<i class="fas fa-bookmark"></i>' 
+                            : '<i class="far fa-bookmark"></i>';
+                    }
+                });
+            });
+        }); // Fin del DOMContentLoaded
+
+        /**
+         * Carga los posts de 'userPosts' en el contenedor.
+         */
+        function cargarPublicacionesUsuarios() {
+            const publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const container = document.getElementById('userPostsContainer');
+            
+            if (!container) return; // Salir si no estamos en la página correcta
+            
+            if (publicaciones.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1 / -1;">No hay publicaciones de usuarios aún.</p>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            publicaciones.forEach(publicacion => {
+                const postElement = crearElementoPublicacion(publicacion);
+                container.appendChild(postElement);
+            });
+        }
+
+        /**
+         * Crea el HTML de una tarjeta de post de usuario.
+         */
+function crearElementoPublicacion(publicacion) {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post-card';
+            
+            // Media
+            let mediaHTML = '';
+            if (publicacion.media) {
+                if (publicacion.media.tipo === 'imagen') {
+                    mediaHTML = `<div class="post-image"><img src="${publicacion.media.url}" alt="${publicacion.media.nombre}"></div>`;
+                } else {
+                    mediaHTML = `<div class="post-image"><video controls><source src="${publicacion.media.url}" type="video/mp4"></video></div>`;
+                }
+            } else {
+                postDiv.classList.add('post-card-no-media');
+            }
+
+            const tagsHTML = publicacion.tags.length > 0 
+                ? `<div class="post-tags">${publicacion.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}</div>` 
+                : '';
+                
+            const adminBadge = publicacion.usuario.esAdmin ? '<span class="admin-badge">👑 Admin</span>' : '';
+
+            // Botón borrar Post (Solo Admin)
+            const deleteButtonHTML = (userType === 'admin')
+                ? `<button class="delete-btn" onclick="manejarEliminacion(${publicacion.id}, this)"><i class="fas fa-trash"></i></button>`
+                : '';
+
+            // Estado de guardado
+            const storageKey = `savedPosts_${userType}`;
+            const savedArray = JSON.parse(localStorage.getItem(storageKey)) || [];
+            const estaGuardado = savedArray.includes(publicacion.id);
+            const claseGuardado = estaGuardado ? 'saved' : '';
+            const iconoGuardado = estaGuardado ? 'fas fa-bookmark' : 'far fa-bookmark';
+
+            // --- COMENTARIOS HTML ---
+            // Si no existe el array de comentarios, úsalo vacío
+            const listaComentarios = publicacion.comentariosList || [];
+            
+            let comentariosHTML = '';
+            listaComentarios.forEach(com => {
+                // Botón borrar Comentario (Solo Admin)
+                const btnBorrarComentario = (userType === 'admin') 
+                    ? `<button class="delete-comment-btn" onclick="manejarEliminarComentario(${publicacion.id}, ${com.id})"><i class="fas fa-times"></i></button>` 
+                    : '';
+
+                comentariosHTML += `
+                    <div class="comment-item">
+                        <img src="${com.avatar}" alt="Avatar" class="comment-avatar">
+                        <div class="comment-content">
+                            <span class="comment-user">${com.usuario} ${btnBorrarComentario}</span>
+                            <p class="comment-text">${com.texto}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            postDiv.innerHTML = `
+                <div class="post-header">
+                    <img src="${publicacion.usuario.avatar}" alt="Avatar" class="post-avatar">
+                    <div class="post-user">
+                        <h4>${publicacion.usuario.nombre} ${adminBadge}</h4>
+                        <span>${publicacion.usuario.username} • ${publicacion.fecha}</span>
+                    </div>
+                    ${deleteButtonHTML}
+                </div>
+                <div class="post-content">
+                    <h3>${publicacion.titulo}</h3>
+                    <p>${publicacion.contenido}</p>
+                    ${tagsHTML}
+                    ${mediaHTML}
+                </div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="manejarLike(this)">
+                        <i class="far fa-heart"></i> ${publicacion.likes || 0}
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-comment"></i> ${listaComentarios.length}
+                    </button>
+                    <button class="post-btn ${claseGuardado}" onclick="manejarGuardado(this, ${publicacion.id})">
+                        <i class="${iconoGuardado}"></i>
+                    </button>
+                </div>
+                
+                <div class="comments-section">
+                    <div class="comments-list">
+                        ${comentariosHTML}
+                    </div>
+                    <div class="comment-input-wrapper">
+                        <input type="text" class="comment-input" placeholder="Escribe un comentario..." id="input-comment-${publicacion.id}">
+                        <button class="comment-submit-btn" onclick="manejarNuevoComentario(${publicacion.id})">Enviar</button>
+                    </div>
+                </div>
+            `;
+            
+            // Click para TTS (ignorar botones)
+            postDiv.addEventListener('click', (e) => {
+                if (e.target.closest('button') || e.target.closest('input')) return; 
+                readPost(publicacion, postDiv);
+            });
+            
+            return postDiv;
+        }
+        /**
+ /* --- FUNCIONES DE INTERACCIÓN --- */
+
+        function manejarLike(boton) {
+            boton.classList.toggle('liked');
+            const icon = boton.querySelector('i');
+            let likes = parseInt(boton.textContent.match(/\d+/)[0]) || 0;
+            if (boton.classList.contains('liked')) { likes++; icon.className = 'fas fa-heart'; } 
+            else { likes--; icon.className = 'far fa-heart'; }
+            boton.innerHTML = `<i class="${icon.className}"></i> ${likes}`;
+        }
+
+        function manejarGuardado(boton, postId) {
+            const storageKey = `savedPosts_${userType}`;
+            let savedArray = JSON.parse(localStorage.getItem(storageKey)) || [];
+            const postIndex = savedArray.indexOf(postId);
+
+            if (postIndex > -1) { savedArray.splice(postIndex, 1); boton.classList.remove('saved'); boton.querySelector('i').className = 'far fa-bookmark'; } 
+            else { savedArray.push(postId); boton.classList.add('saved'); boton.querySelector('i').className = 'fas fa-bookmark'; }
+            localStorage.setItem(storageKey, JSON.stringify(savedArray));
+        }
+
+        function manejarEliminacion(postId, buttonElement) {
+            if (userType !== 'admin') { alert('Acceso denegado.'); return; }
+            if (!confirm('¿Borrar post permanentemente?')) return;
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            publicaciones = publicaciones.filter(post => post.id !== postId);
+            localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+            cargarPublicacionesUsuarios(); // Recargar para ver cambios
+        }
+
+        // 🔥 NUEVO: AGREGAR COMENTARIO 🔥
+        function manejarNuevoComentario(postId) {
+            const input = document.getElementById(`input-comment-${postId}`);
+            const texto = input.value.trim();
+            if (!texto) return;
+
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const postIndex = publicaciones.findIndex(p => p.id === postId);
+
+            if (postIndex !== -1) {
+                // Crear el objeto comentario
+                const nuevoComentario = {
+                    id: Date.now(), // ID único para el comentario
+                    usuario: currentUserData.nombre, // Nombre del usuario actual
+                    avatar: currentUserData.avatar,
+                    texto: texto,
+                    fecha: new Date().toISOString()
+                };
+
+                // Inicializar array si no existe
+                if (!publicaciones[postIndex].comentariosList) {
+                    publicaciones[postIndex].comentariosList = [];
+                }
+                
+                // Guardar
+                publicaciones[postIndex].comentariosList.push(nuevoComentario);
+                
+                // Actualizar contador simple (opcional, para compatibilidad)
+                publicaciones[postIndex].comentarios = publicaciones[postIndex].comentariosList.length;
+
+                localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+                
+                // Recargar para mostrar el nuevo comentario
+                cargarPublicacionesUsuarios();
+            }
+        }
+
+        // 🔥 NUEVO: ELIMINAR COMENTARIO (SOLO ADMIN) 🔥
+        function manejarEliminarComentario(postId, commentId) {
+            if (userType !== 'admin') return; // Seguridad extra
+            if (!confirm('¿Borrar este comentario?')) return;
+
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const postIndex = publicaciones.findIndex(p => p.id === postId);
+
+            if (postIndex !== -1 && publicaciones[postIndex].comentariosList) {
+                // Filtrar el comentario a borrar
+                publicaciones[postIndex].comentariosList = publicaciones[postIndex].comentariosList.filter(c => c.id !== commentId);
+                
+                // Actualizar contador
+                publicaciones[postIndex].comentarios = publicaciones[postIndex].comentariosList.length;
+
+                localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+                cargarPublicacionesUsuarios();
+            }
+        }
+
+    </script>
+</body>
+</html>

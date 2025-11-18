@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados Admin</title>
+    
+    <link rel="stylesheet" href="../GLOBAL 1.0/global.css">
+    
+    <link rel="stylesheet" href="Searchres Admin.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header"><h2>Configuración de Accesibilidad</h2>
+                <button id="close-modal-btn" class="modal-close-btn">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-option">
+                    <label for="font-size-slider">Tamaño del Texto</label>
+                    <input type="range" id="font-size-slider" min="0.8" max="1.5" step="0.1" value="1">
+                    <span class="slider-value">Normal</span>
+                </div>
+                <hr class="modal-divider">
+                <div class="setting-option">
+                    <label>Lector de Publicaciones</label>
+                    <button id="tts-toggle-btn" class="btn-primary"><i class="fas fa-play"></i> Activar Lector</button>
+                    <p class="helper-text" id="tts-helper-text">Esta función está disponible en las páginas de perfil y en el inicio.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeSidebar">✕</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="javascript:void(0);" onclick="redirectToHome()" class="sidebar-link" id="sidebar-link-inicio">
+                <div class="input-simulado"><h3>Inicio</h3></div>
+            </a>
+            
+            <a href="../Mundiales/Mundiales.html" class="sidebar-link" id="sidebar-link-mundiales">
+                <div class="input-simulado"><h3>Mundiales</h3></div>
+            </a>
+            
+            <a href="../Perfil/perfil.html" class="sidebar-link" id="sidebar-link-perfil">
+                <div class="input-simulado"><h3>Perfil</h3></div>
+            </a>
+            
+            <a href="../Saved/guardados.html" class="sidebar-link" id="sidebar-link-buscar">
+                <div class="input-simulado"><h3>Guardados</h3></div>
+            </a>
+            
+            <a href="../Inicio de sesion/login.html" class="sidebar-link"><div class="input-simulado"><h3>Cerrar Sesión</h3></div></a>
+            <a href="../Publicar/Publicar.html" class="sidebar-link"><div class="input-simulado"><h3>Publicar</h3></div></a>
+            <div class="sidebar-link" id="open-settings-btn" style="cursor: pointer;">
+                <div class="input-simulado"><h3><i class="fas fa-cog"></i> Configuración</h3></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="Container">
+        <button class="menu-hamburguesa" id="openSidebar">☰</button>
+        <a href="../Pagina Inicio Admin/TLAdmin.html" class="logo-link">
+          <img src="../Assets/Logo.png" alt="Logo" class="Logo">
+        </a>
+
+        <form id="search-form" class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar..." name="q" required>
+            <button type="submit" class="search-button" id="btnsearch">🔎</button>
+        </form>
+        <div class="Moodnight">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </div>
+    </header>
+
+    <main class="results-wrapper">
+        <h2 id="resultsTitle">Resultados de la Búsqueda</h2>
+        <div id="searchResultsContainer">
+            </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 INFOFUT. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../GLOBAL 1.0/global.js"></script>
+    
+    <script>
+        // 1. DEFINIR EL USUARIO ACTUAL (Para saber quién comenta)
+        const currentUserData = (userType === 'admin') 
+            ? { nombre: "Marco", username: "@MakoMako", avatar: "../Assets/Chucho.jpg" }
+            : { nombre: "Barbara", username: "@BarbaraCodes", avatar: "../Assets/Santi.jpg" };
+        
+document.addEventListener('DOMContentLoaded', function() {
+            // 1. RECIBIR EL DATO DE LA URL
+            // Buscamos si hay algo escrito en la dirección de la página (?q=...)
+            const params = new URLSearchParams(window.location.search);
+            const terminoURL = params.get('q');
+
+            // Si hay algo, lo ponemos en la cajita y buscamos
+            if (terminoURL) {
+                document.getElementById('searchInput').value = terminoURL;
+                cargarResultados(terminoURL);
+            } else {
+                cargarResultados(""); // Carga todo si no hay búsqueda
+            }
+
+            // Evento para buscar si escriben directo en esta página
+            document.getElementById('search-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const searchTerm = document.getElementById('searchInput').value;
+                // Actualizamos la URL sin recargar (para que se vea pro)
+                const newUrl = `${window.location.pathname}?q=${encodeURIComponent(searchTerm)}`;
+                window.history.pushState({path: newUrl}, '', newUrl);
+                
+                cargarResultados(searchTerm);
+            });
+        });
+
+
+/**
+         * Carga y filtra los posts (Lógica de Hashtags Mejorada)
+         */
+        function cargarResultados(searchTerm) {
+            const allPosts = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const container = document.getElementById('searchResultsContainer');
+            
+            // Limpiamos el término: minúsculas y quitamos espacios extra
+            const term = searchTerm.toLowerCase().trim();
+            // Truco: Quitamos el '#' para buscar "Messi" aunque el tag sea "#Messi"
+            const termClean = term.replace('#', '');
+
+            const postsFiltrados = allPosts.filter(post => {
+                if (term === '') return true; 
+                
+                // 1. Buscar en el contenido
+                const contentMatch = post.contenido.toLowerCase().includes(term);
+                
+                // 2. Buscar en el título
+                const titleMatch = post.titulo.toLowerCase().includes(term);
+                
+                // 3. Buscar en los HASHTAGS (La parte importante)
+                // Revisa si algún tag incluye el término (con o sin #)
+                const tagMatch = post.tags.some(tag => {
+                    const tagLimpio = tag.toLowerCase().replace('#', '');
+                    return tagLimpio.includes(termClean);
+                });
+
+                return contentMatch || titleMatch || tagMatch;
+            });
+            
+            container.innerHTML = ''; // Limpia resultados anteriores
+
+            // Actualizar título de resultados
+            const tituloResultados = document.getElementById('resultsTitle');
+            if(term) {
+                tituloResultados.textContent = `Resultados para: "${searchTerm}"`;
+            } else {
+                tituloResultados.textContent = "Todos los Resultados";
+            }
+
+            if (postsFiltrados.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: gray; margin-top: 20px;">No se encontraron resultados.</p>';
+                return;
+            }
+            
+            postsFiltrados.forEach(post => {
+                const card = crearTweetCard(post);
+                container.appendChild(card);
+            });
+
+            if (postsFiltrados.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: gray;">No se encontraron resultados para la búsqueda.</p>';
+                return;
+            }
+        
+        }
+        
+        
+/**
+         * Crea la tarjeta (AHORA CON COMENTARIOS)
+         */
+        function crearTweetCard(publicacion) {
+            const card = document.createElement('div');
+            card.className = 'tweet-card';
+            
+            // Botón eliminar post (Solo Admin)
+            const deleteButtonHTML = (userType === 'admin')
+                ? `<button class="delete-btn-admin" onclick="manejarEliminacion(${publicacion.id}, this)"><i class="fas fa-trash"></i></button>`
+                : '';
+
+            let mediaHTML = publicacion.media 
+                ? (publicacion.media.tipo === 'video' 
+                    ? `<div class="tweet-content-media"><video controls src="${publicacion.media.url}" style="width:100%; border-radius:12px; margin-top:10px;"></video></div>`
+                    : `<div class="tweet-content-media"><img src="${publicacion.media.url}" alt="${publicacion.titulo}"></div>`)
+                : '';
+            
+            const tagsHTML = publicacion.tags.map(tag => 
+                `<span style="color: #0078ff; font-weight:500; margin-right:5px;">#${tag.replace('#','')}</span>`
+            ).join('');
+
+            // --- LÓGICA DE COMENTARIOS ---
+            const listaComentarios = publicacion.comentariosList || [];
+            let comentariosHTML = '';
+            
+            listaComentarios.forEach(com => {
+                // Botón borrar comentario (Solo Admin)
+                const btnBorrarCom = (userType === 'admin') 
+                    ? `<button class="delete-comment-btn" onclick="manejarEliminarComentario(${publicacion.id}, ${com.id})"><i class="fas fa-times"></i></button>` 
+                    : '';
+
+                comentariosHTML += `
+                    <div class="comment-item">
+                        <img src="${com.avatar}" alt="Avatar" class="comment-avatar">
+                        <div class="comment-content">
+                            <span class="comment-user">${com.usuario} ${btnBorrarCom}</span>
+                            <p class="comment-text">${com.texto}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            card.innerHTML = `
+                <div class="tweet-header">
+                    <img src="${publicacion.usuario.avatar}" alt="avatar" class="avatar">
+                    <div class="tweet-user">
+                        <h3>${publicacion.usuario.nombre}</h3>
+                        <p>${publicacion.usuario.username}</p>
+                    </div>
+                    ${deleteButtonHTML}
+                </div>
+                <div class="tweet-content">
+                    <p><b>${publicacion.titulo}</b><br>${publicacion.contenido}</p>
+                    <div class="tweet-tags" style="margin-bottom:10px;">${tagsHTML}</div>
+                    ${mediaHTML}
+                </div>
+                <div class="tweet-actions">
+                    <button><i class="far fa-heart"></i> ${publicacion.likes || 0}</button>
+                    <button><i class="far fa-comment"></i> ${listaComentarios.length}</button>
+                    <button><i class="far fa-bookmark"></i></button>
+                </div>
+
+                <div class="comments-section">
+                    <div class="comments-list">
+                        ${comentariosHTML}
+                    </div>
+                    <div class="comment-input-wrapper">
+                        <input type="text" class="comment-input" placeholder="Escribe un comentario..." id="input-comment-${publicacion.id}">
+                        <button class="comment-submit-btn" onclick="manejarNuevoComentario(${publicacion.id})">Enviar</button>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+     // --- FUNCIONES DE ACCIÓN ---
+
+        function manejarNuevoComentario(postId) {
+            const input = document.getElementById(`input-comment-${postId}`);
+            const texto = input.value.trim();
+            if (!texto) return;
+
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const postIndex = publicaciones.findIndex(p => p.id === postId);
+
+            if (postIndex !== -1) {
+                const nuevoComentario = {
+                    id: Date.now(),
+                    usuario: currentUserData.nombre,
+                    avatar: currentUserData.avatar,
+                    texto: texto,
+                    fecha: new Date().toISOString()
+                };
+
+                if (!publicaciones[postIndex].comentariosList) {
+                    publicaciones[postIndex].comentariosList = [];
+                }
+                
+                publicaciones[postIndex].comentariosList.push(nuevoComentario);
+                publicaciones[postIndex].comentarios = publicaciones[postIndex].comentariosList.length;
+
+                localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+                
+                // Recargar la búsqueda actual para ver el nuevo comentario
+                const searchTerm = document.getElementById('searchInput').value;
+                cargarResultados(searchTerm);
+            }
+        }
+
+        function manejarEliminarComentario(postId, commentId) {
+            if (userType !== 'admin') return;
+            if (!confirm('¿Borrar comentario?')) return;
+
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const postIndex = publicaciones.findIndex(p => p.id === postId);
+
+            if (postIndex !== -1 && publicaciones[postIndex].comentariosList) {
+                publicaciones[postIndex].comentariosList = publicaciones[postIndex].comentariosList.filter(c => c.id !== commentId);
+                publicaciones[postIndex].comentarios = publicaciones[postIndex].comentariosList.length;
+
+                localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+                
+                const searchTerm = document.getElementById('searchInput').value;
+                cargarResultados(searchTerm);
+            }
+        }
+
+        function manejarEliminacion(postId, buttonElement) {
+            if (userType !== 'admin') {
+                alert('Solo el administrador puede borrar posts.');
+                return;
+            }
+            if (!confirm('¿Borrar post permanentemente?')) return;
+
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            publicaciones = publicaciones.filter(post => post.id !== postId);
+            localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+
+            const postCard = buttonElement.closest('.tweet-card');
+            if (postCard) {
+                postCard.style.opacity = '0';
+                setTimeout(() => { 
+                    postCard.remove(); 
+                    if(document.getElementById('searchResultsContainer').children.length === 0) {
+                         // Si se vacía, recarga para mostrar mensaje
+                        const searchTerm = document.getElementById('searchInput').value;
+                        cargarResultados(searchTerm);
+                    }
+                }, 300);
+            }
+        }
+    </script>
+</body>
+</html>

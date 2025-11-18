@@ -1,0 +1,382 @@
+/* =============================================
+   ESTILOS ÚNICOS DE PERFIL.HTML
+   (Todo lo demás está en global.css)
+   ============================================== */
+
+/* --- Contenedor del Perfil --- */
+.profile-container {
+    max-width: 1200px;
+    margin: 20px auto 40px; /* El margin-top es más chico porque body ya empuja */
+    padding: 0 20px;
+}
+
+.profile-header {
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.cover-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.profile-info {
+    position: relative;
+    padding: 0 40px 40px;
+    background: white;
+}
+
+.avatar-section {
+    position: relative;
+    display: inline-block;
+    margin-top: -75px;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid white;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.edit-avatar-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgb(236, 164, 56);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.edit-avatar-btn:hover {
+    transform: scale(1.1);
+    background: rgb(173, 114, 24);
+}
+
+.profile-details {
+    margin-top: 20px;
+}
+
+.profile-name {
+    font-size: calc(2.5em * var(--font-scale, 1)); /* Con accesibilidad */
+    margin: 0;
+    color: #333;
+    font-weight: 700;
+}
+
+.profile-username {
+    font-size: calc(1.2em * var(--font-scale, 1)); /* Con accesibilidad */
+    color: #666;
+    margin: 5px 0;
+}
+
+.profile-bio {
+    font-size: calc(1.1em * var(--font-scale, 1)); /* Con accesibilidad */
+    color: #555;
+    margin: 15px 0;
+    line-height: 1.5;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: calc(1.5em * var(--font-scale, 1)); /* Con accesibilidad */
+    font-weight: 700;
+    color: rgb(236, 164, 56);
+}
+
+.stat-label {
+    font-size: calc(0.9em * var(--font-scale, 1)); /* Con accesibilidad */
+    color: #666;
+}
+
+/* --- Botones de Acción (Editar/Config) --- */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 375px;
+    margin-bottom: 30px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: calc(1em * var(--font-scale, 1)); /* Con accesibilidad */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+/* Estilos para .btn-primary y .btn-secondary ya están en global.css */
+
+
+/* --- Info Personal y Posts --- */
+.personal-info,
+.recent-posts {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.personal-info h2,
+.recent-posts h2 {
+    font-size: calc(1.8em * var(--font-scale, 1)); /* Con accesibilidad */
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+.info-item i {
+    font-size: 1.2em;
+    color: rgb(236, 164, 56);
+    width: 20px;
+}
+.info-label {
+    font-size: calc(0.9em * var(--font-scale, 1)); /* Con accesibilidad */
+    color: #666;
+    margin-bottom: 5px;
+}
+.info-value {
+    font-size: calc(1em * var(--font-scale, 1)); /* Con accesibilidad */
+    font-weight: 600;
+    color: #333;
+}
+
+/* --- Estilos de las Tarjetas de Posts --- */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: stretch; /* Asegura misma altura */
+}
+
+.post-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.post-user h4 {
+    margin: 0;
+    color: #333;
+    font-size: calc(1.1em * var(--font-scale, 1)); /* Con accesibilidad */
+}
+.post-user span {
+    font-size: calc(0.8em * var(--font-scale, 1)); /* Con accesibilidad */
+    color: #666;
+}
+.post-content {
+    flex-grow: 1; /* Para que el contenido crezca */
+}
+.post-content h3 {
+    font-size: calc(1.2em * var(--font-scale, 1)); /* Con accesibilidad */
+}
+.post-card p {
+    margin: 0 0 15px 0;
+    color: #555;
+    line-height: 1.5;
+    font-size: calc(1em * var(--font-scale, 1)); /* Con accesibilidad */
+}
+.post-stats {
+    display: flex;
+    gap: 15px;
+    font-size: calc(0.9em * var(--font-scale, 1)); /* Con accesibilidad */
+    color: #666;
+    margin-top: 15px; /* Separador */
+}
+.post-stats i {
+    margin-right: 5px;
+}
+.post-content .post-image {
+    width: 100%;
+    margin-top: 15px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.post-content .post-image img,
+.post-content .post-image video {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 400px;
+    object-fit: cover;
+}
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 10px 0;
+}
+.tag {
+    background: #e0e0e0;
+    color: #555;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: calc(0.8em * var(--font-scale, 1));
+}
+
+
+/* --- Posts sin Imagen (Accesibilidad) --- */
+.post-card.post-card-no-media .post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 150px;
+}
+.post-card.post-card-no-media .post-content h3 {
+    font-size: calc(1.5em * var(--font-scale, 1));
+    text-align: center;
+}
+.post-card.post-card-no-media .post-content p {
+    font-size: calc(1.25em * var(--font-scale, 1));
+    text-align: center;
+    font-weight: 500;
+}
+
+/* --- Dark Mode (Específico de Perfil) --- */
+body.dark-mode .profile-info,
+body.dark-mode .personal-info,
+body.dark-mode .recent-posts {
+    background: #0b0c0e;
+    color: #f7fafc;
+}
+body.dark-mode .profile-name,
+body.dark-mode .personal-info h2,
+body.dark-mode .recent-posts h2,
+body.dark-mode .info-value,
+body.dark-mode .post-user h4,
+body.dark-mode .post-card p {
+    color: #f7fafc;
+}
+body.dark-mode .profile-username,
+body.dark-mode .profile-bio,
+body.dark-mode .stat-label,
+body.dark-mode .info-label,
+body.dark-mode .post-user span,
+body.dark-mode .post-stats {
+    color: #cbd5e0;
+}
+body.dark-mode .info-item,
+body.dark-mode .post-card {
+    background: #1f2229;
+}
+body.dark-mode .post-card.post-card-no-media .post-content p {
+    color: #e0e0e0;
+}
+body.dark-mode .post-card.post-card-no-media .post-content h3 {
+    color: #f8f9fa;
+}
+body.dark-mode .tag {
+    background: #4a5568;
+    color: #cbd5e0;
+}
+
+/* --- Responsive (Específico de Perfil) --- */
+/*
+ * NOTA: El responsive del HEADER ya está en global.css
+ * Esto es solo para el CONTENIDO del perfil
+*/
+@media (max-width: 768px) {
+    .profile-container {
+        margin-top: 20px;
+        padding: 0 15px;
+    }
+    .profile-info {
+        padding: 0 20px 20px;
+        text-align: center;
+    }
+    .profile-stats {
+        justify-content: center;
+    }
+    .action-buttons {
+        flex-direction: column;
+        margin-left: 0;
+        width: 100%;
+        gap: 10px;
+    }
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 480px) {
+    .profile-container {
+        margin-top: 15px;
+    }
+    .cover-image {
+        height: 150px;
+    }
+    .avatar-section {
+        margin-top: -40px;
+    }
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+    }
+    .profile-name {
+        font-size: calc(1.5em * var(--font-scale, 1));
+    }
+}

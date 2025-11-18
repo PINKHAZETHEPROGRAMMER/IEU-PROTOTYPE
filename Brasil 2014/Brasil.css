@@ -1,0 +1,676 @@
+
+/*Header-----------------------------------------------------------------------------------------------------------------------------*/
+
+.Container {
+    position: fixed;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background-color: rgb(236, 164, 56);
+    height: 100px;
+    width: 100%; 
+    top: 0; 
+    left: 0;
+    z-index: 1000;
+    padding: 0; 
+    box-sizing: border-box; 
+    color: white;
+    margin: 0;
+}
+
+h1{
+        font-family:"Libre Franklin", sans-serif;
+        font-size: 100px;
+        text-align: center;
+
+    background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent;
+    -webkit-text-fill-color: transparent; 
+
+
+    background-size: 200% auto;
+    animation: shine 4s linear infinite;
+
+        animation: fade-in-bajada 1s ease-out forwards;
+
+
+}
+
+@keyframes shine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes fade-in-bajada {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
+
+.container img{
+    height: 500px;
+    width: 500px;
+    
+}
+
+h2{
+        font-family:"Libre Franklin", sans-serif;
+        font-size: 60px;
+        text-align: center;
+
+    background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent;
+    -webkit-text-fill-color: transparent; 
+
+
+    background-size: 200% auto;
+    animation: shine 4s linear infinite;
+
+        animation: fade-in-bajada 1s ease-out forwards;
+
+
+}
+
+
+h3{
+    font-family: "Libre Franklin", sans-serif;
+    align-items: center;
+}
+
+h3{
+    color: #333;
+}
+
+h4{
+        font-family:"Libre Franklin", sans-serif;
+        font-size: 30px;
+        text-align: left;
+
+    background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent;
+    -webkit-text-fill-color: transparent; 
+
+
+    background-size: 200% auto;
+    animation: shine 4s linear infinite;
+
+    animation: fade-in-bajada 1s ease-out forwards;
+
+    /* LIMITANTE */
+    max-width: 1000px;   /* ajusta el tamaño que quieras */
+    margin: 0 auto;     /* centra el texto dentro del espacio */
+}
+
+/*Search box------------------------------------------------------------------------------------------------------------------------------*/
+
+.search-box{
+    margin: 14px;
+    display: flex !important;
+    align-items: center !important;
+    border-radius: 25px;
+    background-color:rgb(255, 255, 255);
+    padding: 6px 10px !important;
+    overflow: hidden;
+    width: 500px;
+    border: 1px solid #555;
+
+
+
+
+}
+
+.search-input {
+    border: none!important;
+    outline: none!important;
+    background-color: transparent!important;
+    padding: 8px;
+    font-size: 14px;
+    flex: 1!important;
+    flex-grow: 1!important;
+    padding: 8px 15px!important; 
+    color: #ccc; 
+    font-size: 16px;
+}
+
+.search-button{
+    border:orange;
+    border-radius: 10px;
+    size: 100px;
+    background-color: orange;
+}
+
+.Logo{
+    height: 200px;
+    width: auto;
+    margin: 50px;
+    border-radius: 50%;
+    padding: 50px;
+    align-items: center;
+    top: 0; 
+    left: 0;
+
+
+
+}
+
+.logo-link {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logo-link .Logo {
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover .Logo {
+    transform: scale(1.05);
+}
+
+/*Hamburguesa6-----------------------------------------------------------------------------------------------------------------------*/
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    transform: translateX(-100%);
+    max-width: 80%;
+    background-color: #f8f8f8; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 10000;   
+    transition: transform 0.4s ease-in-out; 
+}
+
+
+.sidebar.open {
+    
+    transform: translateX(0); 
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: flex-end; 
+    padding: 15px;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); 
+    pointer-events: none; 
+    z-index: 9999; 
+    transition: background-color 0.4s ease-in-out; 
+}
+
+.sidebar-overlay.active {
+    background-color: rgba(0, 0, 0, 0.5); 
+    pointer-events: auto; 
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
+}
+
+.sidebar-content {
+    padding: 0 20px;
+}
+
+
+.input-simulado {
+    background-color: #ccc;
+    height: 35px;
+    margin: 20px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    transition: all 0.3s ease;
+    cursor: default; 
+}
+
+.sidebar-link .input-simulado {
+    cursor: pointer; 
+}
+
+.input-simulado h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    height: 35px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.input-simulado:hover {
+    background-color: #b1abab;
+    height: 35px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+/*Sidebar links------------------------------------------------------------------------------------------------------------------------*/
+.sidebar-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.sidebar-link .input-simulado {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.sidebar-link:hover .input-simulado {
+    background-color: #b1abab;
+    transform: translateX(5px);
+}
+
+.input-simulado h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+body.dark-mode .input-simulado h3 {
+    color: #f3f3f3;
+}
+
+body.dark-mode .sidebar-link:hover .input-simulado {
+    background-color: #555;
+}
+
+/*Hamburguer inputs----------------------------------------------------------------------------------------------------------------------*/
+
+
+
+.menu-hamburguesa {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    background-color: rgb(236, 164, 56);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-hamburguesa:hover {
+    background-color: #b37614;
+    color: rgb(228, 222, 222);
+}
+
+/*Dark mode style1----------------------------------------------------------------------------------------------------------------------*/
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f3f3f3;
+}
+
+input, button {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body.dark-mode input {
+    background-color: #333;
+    color: #f3f3f3;
+    border: 1px solid #555;
+}
+
+body.dark-mode button {
+    background-color: rgb(236, 164, 56);
+    color: white;
+}
+body.dark-mode .search-box {
+    background-color: #333;
+    border-color: #555; 
+}
+
+body.dark-mode .search-input {
+    background-color: transparent; 
+    color: #fff;
+}
+
+body.dark-mode .transmision-info {
+    font-size: 0.7em;
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+body.dark-mode .match-details p {
+    margin: 0;
+    font-size: 0.8em;
+    color: #ffffff;
+}
+
+
+body.dark-mode .footer {
+    background-color: #222;
+    color: #f3f3f3;
+}
+
+body.dark-mode .footer-links a:hover {
+    color: rgb(236, 164, 56);
+}
+
+body.dark-mode .card-header .status {
+    display: block;
+    font-size: 0.7em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+body.dark-mode .match-card {
+    border: 1px solid #2b2a2a;
+    background-color: #222; 
+    color: #ffffff; 
+    box-shadow: 0 2px 5px rgba(255, 251, 251, 0.05);
+}
+
+
+.theme-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: rgb(236, 164, 56);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 22px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.theme-btn:hover {
+    background-color: rgb(173, 114, 24);
+    transform: scale(1.1);
+}
+
+body.dark-mode .h3{
+    color: #ddd;
+}
+
+/*Footer--------------------------------------------------------------------------------------------------------------------------------*/
+
+.footer {
+    background-color: rgb(236, 164, 56);
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    position: relative; 
+    bottom: 0;
+    width: 100%;
+    font-family: "Libre Franklin", sans-serif;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #333;
+}
+
+/*Dark mode style sidebar----------------------------------------------------------------------------------------------------------------------*/
+
+
+body.dark-mode .sidebar {
+    background-color:  #0b0c0e;
+}
+
+body.dark-mode .close-btn {
+    color: #f7fafc;
+}
+
+body.dark-mode .input-simulado {
+    background-color: #4a5568;
+}
+
+body.dark-mode .input-simulado h3 {
+    color: #f7fafc;
+}
+
+body.dark-mode .sidebar-link:hover .input-simulado {
+    background-color: #718096;
+}
+
+body.dark-mode .input-simulado:hover {
+    background-color: #718096;
+}
+
+
+
+@media (max-width: 768px) {
+    .search-box {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .Botones {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    h1 {
+        font-size: 60px;
+        text-align: center;
+    }
+}
+
+/* Mundiales */
+
+body {
+    background: #eee;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor centrado correctamente */
+.contenedor-imagen {
+    width: 260px;
+    padding-top: 5%; /* Evitar solapamiento */
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor-mundiales {
+    display: flex;
+    flex-wrap: wrap;          /* ← Permite que se acomoden en varias filas */
+    justify-content: center;  /* Centra horizontalmente */
+    gap: 40px;                /* Espacio entre tarjetas */
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* Imagen */
+.contenedor-imagen img {
+    width: 100%;
+    max-width: 90%;       /* Para que no se salga en pantallas pequeñas */
+    border-radius: 20px;
+    object-fit: cover;
+    display: flex;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Label */
+.contenedor-imagen label {
+    display: block;
+    margin-top: 12px;
+    font-size: 1.4rem;
+    color: #000000;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Dark mode para las labels */
+body.dark-mode .contenedor-imagen label {
+    color: #ffffff;
+}
+
+body.dark-mode .contenedor-imagen {
+    color: #000000;
+}
+
+.contenedor-imagen:hover {
+    transform: translateY(-5px);
+}
+
+/* Tittle 2*/
+.Title2 {
+    padding-top: 10%;
+    
+}
+
+.Title2 img {
+    max-width: 600px;
+    width: 50%;
+    border-radius: 12px;
+    margin-top: 10px;
+
+    /* CENTRAR LA IMAGEN */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.group-table {
+    display: grid;
+    grid-template-columns: 150px repeat(8, 40px);
+    gap: 4px;
+    width: auto;           /* ← EVITA que se estire */
+    margin: 0 auto;        /* ← CENTRA la tabla */
+}
+
+.group-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+/* Bracket — estilos generales */
+.bracket-wrapper {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  background: transparent; /* ajusta si quieres un fondo */
+}
+
+/* contenedor que alberga las 4 columnas (octavos → final) */
+.bracket-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  width: 100%;
+  max-width: 1400px;
+  box-sizing: border-box;
+}
+
+/* cada columna (ronda) */
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* título de la ronda */
+.bracket-round h2 {
+  text-align: center;
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  color: #222;
+}
+
+/* tarjeta de partido */
+.bracket-match {
+  background: #ffffff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* estilo de la línea de equipo: nombre a la izquierda, marcador a la derecha */
+.bracket-team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #111;
+}
+
+/* resaltar ganador */
+.bracket-winner {
+  font-weight: 700;
+  color: #1565c0; /* azul destacado; cámbialo a tu color preferido */
+}
+
+/* pequeño ajuste responsive */
+@media (max-width: 980px) {
+  .bracket-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .bracket-container {
+    grid-template-columns: 1fr;
+  }
+  .bracket-match { font-size: 13px; padding: 10px; }
+  .bracket-round h2 { font-size: 16px; }
+}

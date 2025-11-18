@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundiales - INFOFUT</title>
+    
+    <link rel="stylesheet" href="../GLOBAL 1.0/global.css">
+    
+    <link rel="stylesheet" href="Mundiales.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configuración de Accesibilidad</h2>
+                <button id="close-modal-btn" class="modal-close-btn">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-option">
+                    <label for="font-size-slider">Tamaño del Texto</label>
+                    <input type="range" id="font-size-slider" min="0.8" max="1.5" step="0.1" value="1">
+                    <span class="slider-value">Normal</span>
+                </div>
+                <hr class="modal-divider">
+                <div class="setting-option">
+                    <label>Lector de Publicaciones</label>
+                    <button id="tts-toggle-btn" class="btn-primary">
+                        <i class="fas fa-play"></i> Activar Lector
+                    </button>
+                    <p class="helper-text" id="tts-helper-text">
+                        Esta función está disponible en las páginas de perfil y en el inicio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeSidebar">✕</button>
+        </div>
+        
+        <div class="sidebar-content">
+            <a href="javascript:void(0);" onclick="redirectToHome()" class="sidebar-link" id="sidebar-link-inicio">
+                <div class="input-simulado"><h3>Inicio</h3></div>
+            </a>
+            
+            <a href="../Mundiales/Mundiales.html" class="sidebar-link" id="sidebar-link-mundiales">
+                <div class="input-simulado"><h3>Mundiales</h3></div>
+            </a>
+            
+            <a href="../Perfil/perfil.html" class="sidebar-link" id="sidebar-link-perfil">
+                <div class="input-simulado"><h3>Perfil</h3></div>
+            </a>
+            
+            <a href="../Saved/guardados.html" class="sidebar-link" id="sidebar-link-buscar">
+                <div class="input-simulado"><h3>Guardados</h3></div>
+            </a>
+            
+            <a href="../Inicio de sesion/login.html" class="sidebar-link"><div class="input-simulado"><h3>Cerrar Sesión</h3></div></a>
+            <a href="../Publicar/Publicar.html" class="sidebar-link"><div class="input-simulado"><h3>Publicar</h3></div></a>
+            <div class="sidebar-link" id="open-settings-btn" style="cursor: pointer;">
+                <div class="input-simulado"><h3><i class="fas fa-cog"></i> Configuración</h3></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="Container">
+        <button class="menu-hamburguesa" id="openSidebar">☰</button>
+        <a href="../Pagina inicio/TL.html" class="logo-link">
+            <img src="../Assets/Logo.png" alt="Logo" class="Logo">
+        </a>
+        <form id="search-form" class="search-box">
+            <input type="text" id="city" class="search-input" placeholder="Buscar..." name="q" required>
+            <button type="button" class="search-button" id="btnsearch">🔎</button>
+        </form>
+        <div class="Moodnight">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </div>
+    </header>
+
+    <main class="contenedor-mundiales">
+        <div class="contenedor-imagen">
+            <a href = "../EMC 2026/EMC.html">
+                <img src="../Assets/MUC.jpg" alt="Bandera de México, USA y Canada">
+            </a>
+            <label>USA-México-Canada 2026</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Qatar 2022/Qatar.html">
+                <img src="../Assets/Qatar.png" alt="Bandera de Qatar">
+            </a>
+            <label>Qatar 2022</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Rusia 2018/Rusia.html">    
+                <img src="../Assets/Russia.png" alt="Bandera de Russia">
+            </a>
+            <label>Russia 2018</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Brasil 2014/Brasil.html">
+                <img src="../Assets/Brasil.png" alt="Bandera de Brasil">
+            </a>
+            <label>Brasil 2014</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../SA 2010/SA.html">
+                <img src="../Assets/SA.png" alt="Bandera de Sudáfrica">
+            </a>
+            <label>Sudáfrica 2010</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Ger 2006/Ger.html">
+                <img src="../Assets/Alemania.png" alt="Bandera de Alemania">
+            </a>
+            <label>Alemania 2006</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../KJ 2002/KJ.html">
+                <img src="../Assets/KJ.jpg" alt="Bandera de Korea-Japón">
+            </a>
+            <label>Korea-Japón 2002</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Francia 98/Francia.html">
+                <img src="../Assets/Francia.png" alt="Bandera de Francia">
+            </a>
+            <label>Francia 1998</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../USA 94/Usa.html">
+                <img src="../Assets/USA.png" alt="Bandera de Estados Unidos">
+            </a>
+            <label>USA 1994</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Italia 90/Italia.html">
+                <img src="../Assets/Italia.png" alt="Bandera de Italia">
+            </a>
+            <label>Italia 1990</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Mex 86/Mex.html">
+                <img src="../Assets/México.png" alt="Bandera de México">
+            </a>
+            <label>México 1986</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Esp 82/Esp.html">
+                <img src="../Assets/España.png" alt="Bandera de España">
+            </a>
+            <label>España 1982</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Arg78/Arg.html">
+                <img src="../Assets/Argentina.png" alt="Bandera de Argentina">
+            </a>
+            <label>Argentina 1978</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Ger 74/Ger.html">
+                <img src="../Assets/Alemania.png" alt="Bandera de Alemania">
+            </a>
+            <label>Alemania 1974</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Mex 70/Mex.html">
+                <img src="../Assets/México.png" alt="Bandera de México">
+            </a>
+            <label>México 1970</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Eng 66/Eng.html">
+                <img src="../Assets/ENG.png" alt="Bandera de Inglaterra">
+            </a>
+            <label>Inglaterra 1966</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Chile 62/Chile.html">
+                <img src="../Assets/Chile.png" alt="Bandera de Chile">
+            </a>
+            <label>Chile 1962</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Sue 58/Sue.html">
+                <img src="../Assets/Suecia.png" alt="Bandera de Suecia">
+            </a>
+            <label>Suecia 1958</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Sui 54/Sui.html">
+                <img src="../Assets/Suiza.jpg" alt="Bandera de Suiza">
+            </a>
+            <label>Suiza 1954</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Brasil 50/Brasil.html">
+                <img src="../Assets/Brasil.png" alt="Bandera de Brasil">
+            </a>
+            <label>Brasil 1950</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Fra 38/Fra.html">
+                <img src="../Assets/Francia.png" alt="Bandera de Francia">
+            </a>
+            <label>Francia 1938</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Italia 34/It.html">
+                <img src="../Assets/Italia.png" alt="Bandera de Italia">
+            </a>
+            <label>Italia 1934</label>
+        </div>
+
+        <div class="contenedor-imagen">
+            <a href="../Uru 30/Uru.html">
+                <img src="../Assets/Uruguay.png" alt="Bandera de Uruguay">
+            </a>
+            <label>Uruguay 1930</label>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 INFOFUT. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+   <script src="../GLOBAL 1.0/global.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Selecciona todas las tarjetas de mundiales
+            const infografias = document.querySelectorAll('.contenedor-imagen');
+            
+            infografias.forEach(info => {
+                info.addEventListener('click', (e) => {
+                    // Previene que el link se active si el lector está prendido
+                    if (ttsActive) {
+                        e.preventDefault();
+                    }
+                    
+                    // Llama a la función de lectura
+                    // (La función 'readInfographic' la definimos abajo)
+                    readInfographic(info);
+                });
+            });
+        });
+
+        /**
+         * Función específica para leer las infografías de esta página.
+         * Usa las variables 'ttsActive' y 'synth' de global.js
+         */
+        function readInfographic(element) {
+            // 1. Si el lector no está activo (desde global.js), no hace nada
+            if (!ttsActive) return;
+            
+            // 2. Si ya estaba hablando, detiene la lectura
+            if (synth.speaking) {
+                synth.cancel();
+                document.querySelectorAll('.contenedor-imagen.is-reading').forEach(el => el.classList.remove('is-reading'));
+                return; 
+            }
+
+            // 3. Prepara el texto (busca la etiqueta <label> adentro)
+            const label = element.querySelector('label');
+            if (!label) return; // No hay nada que leer
+
+            const textoALeer = label.textContent;
+
+            const utterance = new SpeechSynthesisUtterance(textoALeer);
+            utterance.lang = 'es-MX'; // Lenguaje
+            
+            // 4. Resalta el post cuando empieza a hablar
+            utterance.onstart = () => {
+                // Quita el resaltado de otros posts
+                document.querySelectorAll('.contenedor-imagen.is-reading').forEach(el => el.classList.remove('is-reading'));
+                element.classList.add('is-reading');
+            };
+            
+            // 5. Quita el resaltado cuando termina (o si hay error)
+            utterance.onend = () => {
+                element.classList.remove('is-reading');
+            };
+            utterance.onerror = () => {
+                element.classList.remove('is-reading');
+            };
+
+            // 6. ¡Habla!
+            synth.speak(utterance);
+        }
+    
+    </script>
+
+</body>
+</html>

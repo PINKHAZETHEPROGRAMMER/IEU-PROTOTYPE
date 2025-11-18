@@ -1,0 +1,88 @@
+/* =============================================
+   ESTILOS ÚNICOS DE MUNDIALES.HTML
+   (Todo lo demás está en global.css)
+   ============================================== */
+
+body {
+    /* Un fondo ligeramente diferente para esta pág */
+    background-color: #f4f4f4; 
+}
+
+.contenedor-mundiales {
+    display: flex;
+    flex-wrap: wrap;          /* Permite que se acomoden en varias filas */
+    justify-content: center;  /* Centra horizontalmente */
+    gap: 40px;                /* Espacio entre tarjetas */
+    width: 90%;
+    max-width: 1400px;
+    margin: 20px auto 40px; /* Margen chico, body ya empuja */
+    padding-top: 20px;
+}
+
+.contenedor-imagen {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent; /* Espacio para el borde de lectura */
+    border-radius: 22px; /* Un poco más grande que la imagen */
+    padding: 5px;
+}
+
+.contenedor-imagen:hover {
+    transform: translateY(-5px);
+}
+
+.contenedor-imagen img {
+    width: 260px; /* Ancho fijo */
+    height: 180px; /* Alto fijo */
+    border-radius: 20px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.contenedor-imagen label {
+    display: block;
+    margin-top: 12px;
+    /* 🔥 AQUÍ ESTÁ LA MAGIA DEL SLIDER 🔥 */
+    font-size: calc(1.4rem * var(--font-scale, 1));
+    color: #000000;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* 🔥 AQUÍ ESTÁ LA MAGIA DEL LECTOR (TTS) 🔥 */
+.contenedor-imagen.is-reading {
+    box-shadow: 0 0 10px 5px rgb(236, 164, 56);
+    border-color: rgb(236, 164, 56);
+}
+
+/* --- Dark Mode --- */
+body.dark-mode {
+    background-color: #1a1a1a;
+}
+
+body.dark-mode .contenedor-imagen label {
+    color: #ffffff;
+}
+
+/* --- Responsive (Específico de Mundiales) --- */
+@media (max-width: 480px) {
+    .contenedor-mundiales {
+        gap: 20px;
+        padding-top: 10px;
+    }
+    .contenedor-imagen {
+        width: 100%;
+    }
+    .contenedor-imagen img {
+        width: 100%;
+        height: auto; /* Alto automático en móvil */
+        max-height: 200px;
+    }
+}

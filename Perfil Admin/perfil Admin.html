@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil</title>
+    
+    <link rel="stylesheet" href="../GLOBAL 1.0/global.css">
+    
+    <link rel="stylesheet" href="perfil Admin.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configuración de Accesibilidad</h2>
+                <button id="close-modal-btn" class="modal-close-btn">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-option">
+                    <label for="font-size-slider">Tamaño del Texto</label>
+                    <input type="range" id="font-size-slider" min="0.8" max="1.5" step="0.1" value="1">
+                    <span class="slider-value">Normal</span>
+                </div>
+                <hr class="modal-divider">
+                <div class="setting-option">
+                    <label>Lector de Publicaciones</label>
+                    <button id="tts-toggle-btn" class="btn-primary">
+                        <i class="fas fa-play"></i> Activar Lector
+                    </button>
+                    <p class="helper-text" id="tts-helper-text">
+                        Una vez activo, haz clic en cualquier publicación para escucharla.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeSidebar">✕</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="javascript:void(0);" onclick="redirectToHome()" class="sidebar-link" id="sidebar-link-inicio">
+                <div class="input-simulado"><h3>Inicio</h3></div>
+            </a>
+            
+            <a href="../Mundiales/Mundiales.html" class="sidebar-link" id="sidebar-link-mundiales">
+                <div class="input-simulado"><h3>Mundiales</h3></div>
+            </a>
+            
+            <a href="../Perfil/perfil.html" class="sidebar-link" id="sidebar-link-perfil">
+                <div class="input-simulado"><h3>Perfil</h3></div>
+            </a>
+            
+            <a href="../Saved/guardados.html" class="sidebar-link" id="sidebar-link-buscar">
+                <div class="input-simulado"><h3>Guardados</h3></div>
+            </a>
+            
+            <a href="../Inicio de sesion/login.html" class="sidebar-link"><div class="input-simulado"><h3>Cerrar Sesión</h3></div></a>
+            <a href="../Publicar/Publicar.html" class="sidebar-link"><div class="input-simulado"><h3>Publicar</h3></div></a>
+            <div class="sidebar-link" id="open-settings-btn" style="cursor: pointer;">
+                <div class="input-simulado"><h3><i class="fas fa-cog"></i> Configuración</h3></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="Container">
+        <button class="menu-hamburguesa" id="openSidebar">☰</button>
+        <a href="../Pagina inicio/TL.html" class="logo-link">
+            <img src="../Assets/Logo.png" alt="Logo" class="Logo">
+        </a>
+        <form id="search-form" class="search-box">
+            <input type="text" id="city" class="search-input" placeholder="Buscar..." name="q" required>
+            <button type="button" class="search-button" id="btnsearch">🔎</button>
+        </form>
+        <div class="Moodnight">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="../Assets/Argentina.jpg" alt="Portada" class="cover-image">
+            <div class="profile-info">
+                <div class="avatar-section">
+                    <img src="../Assets/Chucho.jpg" alt="Avatar" class="profile-avatar">
+                    <button class="edit-avatar-btn" aria-label="Boton para cambiar el avatar">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                <div class="profile-details">
+                    <h1 class="profile-name">Marco</h1>
+                    <p class="profile-username">@MakoMako</p>
+                    <p class="profile-bio">La fokin cabra</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-number">156</span>
+                            <span class="stat-label">Publicaciones</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">13.4K</span>
+                            <span class="stat-label">Seguidores</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">9</span>
+                            <span class="stat-label">Siguiendo</span>
+                        </div>
+                            <div class="action-buttons">
+                                <button class="btn-primary" aria-label="Cambiar Perfil">
+                                    <i class="fas fa-edit"></i> Editar Perfil
+                                </button>
+                                <button class="btn-secondary" aria-label="Cambiar Configracion">
+                                    <i class="fas fa-cog"></i> Configuración
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="personal-info">
+            <h2>Información Personal</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <span class="info-label">Email</span>
+                        <span class="info-value">marco@uanl.com</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <span class="info-label">Ubicación</span>
+                        <span class="info-value">Monterrey, Mexico</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar"></i>
+                    <div>
+                        <span class="info-label">Miembro desde</span>
+                        <span class="info-value">Novimebre 2018</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-futbol"></i>
+                    <div>
+                        <span class="info-label">Equipo favorito</span>
+                        <span class="info-value">Argentina</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-posts">
+            <h2>Mis Publicaciones Recientes</h2>
+            <div id="misPublicacionesContainer" class="posts-grid">
+                </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 INFOFUT. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../GLOBAL 1.0/global.js"></script>
+
+    <script>
+        // --- DEFINIR QUIÉN SOY (Para saber quién comenta) ---
+        const currentUserData = (userType === 'admin') 
+            ? { nombre: "Marco", username: "@MakoMako", avatar: "../Assets/Chucho.jpg" }
+            : { nombre: "Barbara", username: "@BarbaraCodes", avatar: "../Assets/Santi.jpg" };
+        // Carga las publicaciones del perfil cuando todo esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarMisPublicaciones();
+        });
+
+        // Esta función SOLO vive en la página de perfil
+        function cargarMisPublicaciones() {
+            const publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const container = document.getElementById('misPublicacionesContainer');
+            const miUsername = "@MakoMako"; // Usuario de este perfil
+            
+            // Filtra solo los posts de este usuario
+            const misPublicaciones = publicaciones.filter(post => 
+                post.usuario.username === miUsername
+            );
+            
+            if (misPublicaciones.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1 / -1;">No has creado publicaciones aún.</p>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            // ¡ARREGLADO! Quité el .slice(0, 3) para que muestre TODOS
+            misPublicaciones.forEach(publicacion => {
+                const postElement = crearElementoPublicacionPerfil(publicacion);
+                container.appendChild(postElement);
+            });
+        }
+
+        // Esta función TAMBIÉN solo vive aquí
+function crearElementoPublicacionPerfil(publicacion) {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post-card';
+            
+            let mediaHTML = '';
+            if (publicacion.media) {
+                if (publicacion.media.tipo === 'imagen') {
+                    mediaHTML = `<div class="post-image"><img src="${publicacion.media.url}" alt="${publicacion.media.nombre}"></div>`;
+                } else {
+                    mediaHTML = `<div class="post-image"><video controls><source src="${publicacion.media.url}" type="video/mp4"></video></div>`;
+                }
+            } else {
+                postDiv.classList.add('post-card-no-media');
+            }
+
+            const tagsHTML = publicacion.tags.length > 0 
+                ? `<div class="post-tags">${publicacion.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}</div>` 
+                : '';
+
+            // --- Botón de Eliminar (Solo Admin) ---
+            // cambia la condición a: if (userType === 'admin' || userType === 'normal')
+            const deleteButtonHTML = (userType === 'admin')
+                ? `<button class="delete-btn" onclick="manejarEliminacion(${publicacion.id}, this)"><i class="fas fa-trash"></i></button>`
+                : '';
+
+            // --- Lógica de Comentarios ---
+            const listaComentarios = publicacion.comentariosList || [];
+            let comentariosHTML = '';
+            
+            listaComentarios.forEach(com => {
+                const btnBorrarComentario = (userType === 'admin') 
+                    ? `<button class="delete-comment-btn" onclick="manejarEliminarComentario(${publicacion.id}, ${com.id})"><i class="fas fa-times"></i></button>` 
+                    : '';
+
+                comentariosHTML += `
+                    <div class="comment-item">
+                        <img src="${com.avatar}" alt="Avatar" class="comment-avatar">
+                        <div class="comment-content">
+                            <span class="comment-user">${com.usuario} ${btnBorrarComentario}</span>
+                            <p class="comment-text">${com.texto}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            postDiv.innerHTML = `
+                <div class="post-header">
+                    <img src="${publicacion.usuario.avatar}" alt="Avatar" class="post-avatar">
+                    <div class="post-user">
+                        <h4>${publicacion.usuario.nombre}</h4>
+                        <span>${publicacion.fecha}</span>
+                    </div>
+                    ${deleteButtonHTML}
+                </div>
+                <div class="post-content">
+                    <h3>${publicacion.titulo}</h3>
+                    <p>${publicacion.contenido}</p>
+                    ${tagsHTML}
+                    ${mediaHTML}
+                </div>
+                <div class="post-stats">
+                    <span><i class="far fa-heart"></i> ${publicacion.likes || 0}</span>
+                    <span><i class="far fa-comment"></i> ${listaComentarios.length}</span>
+                </div>
+                
+                <div class="comments-section">
+                    <div class="comments-list">
+                        ${comentariosHTML}
+                    </div>
+                    <div class="comment-input-wrapper">
+                        <input type="text" class="comment-input" placeholder="Escribe un comentario..." id="input-comment-${publicacion.id}">
+                        <button class="comment-submit-btn" onclick="manejarNuevoComentario(${publicacion.id})">Enviar</button>
+                    </div>
+                </div>
+            `;
+            
+            // Click para TTS (ignorar botones)
+            postDiv.addEventListener('click', (e) => {
+                if (e.target.closest('button') || e.target.closest('input')) return;
+                readPost(publicacion, postDiv);
+            });
+            
+            return postDiv;
+        }
+
+        // --- FUNCIONES DE INTERACCIÓN ---
+
+        function manejarEliminacion(postId, buttonElement) {
+            // Confirmación extra
+            if (!confirm('¿Estás seguro de que quieres borrar este post permanentemente?')) return;
+
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            publicaciones = publicaciones.filter(post => post.id !== postId);
+            localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+
+            // Eliminar visualmente
+            const postCard = buttonElement.closest('.post-card');
+            if (postCard) {
+                postCard.style.transition = 'opacity 0.3s ease';
+                postCard.style.opacity = '0';
+                setTimeout(() => {
+                    postCard.remove();
+                    // Checar si quedó vacío
+                    const container = document.getElementById('misPublicacionesContainer');
+                    if(container.children.length === 0) {
+                         container.innerHTML = '<p style="text-align: center; color: #666;">No has creado publicaciones aún.</p>';
+                    }
+                }, 300);
+            }
+        }
+
+        function manejarNuevoComentario(postId) {
+            const input = document.getElementById(`input-comment-${postId}`);
+            const texto = input.value.trim();
+            if (!texto) return;
+
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const postIndex = publicaciones.findIndex(p => p.id === postId);
+
+            if (postIndex !== -1) {
+                const nuevoComentario = {
+                    id: Date.now(),
+                    usuario: currentUserData.nombre,
+                    avatar: currentUserData.avatar,
+                    texto: texto,
+                    fecha: new Date().toISOString()
+                };
+
+                if (!publicaciones[postIndex].comentariosList) {
+                    publicaciones[postIndex].comentariosList = [];
+                }
+                
+                publicaciones[postIndex].comentariosList.push(nuevoComentario);
+                publicaciones[postIndex].comentarios = publicaciones[postIndex].comentariosList.length;
+
+                localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+                
+                // Recargar SOLO esta página
+                cargarMisPublicaciones();
+            }
+        }
+
+        function manejarEliminarComentario(postId, commentId) {
+            if (userType !== 'admin') return; 
+            if (!confirm('¿Borrar este comentario?')) return;
+
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const postIndex = publicaciones.findIndex(p => p.id === postId);
+
+            if (postIndex !== -1 && publicaciones[postIndex].comentariosList) {
+                publicaciones[postIndex].comentariosList = publicaciones[postIndex].comentariosList.filter(c => c.id !== commentId);
+                publicaciones[postIndex].comentarios = publicaciones[postIndex].comentariosList.length;
+
+                localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+                cargarMisPublicaciones();
+            }
+        }
+
+    </script>
+</body>
+</html>

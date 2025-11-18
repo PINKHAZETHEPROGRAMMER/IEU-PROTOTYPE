@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Publicaciones Guardadas</title>
+    
+    <link rel="stylesheet" href="../GLOBAL 1.0/global.css">
+    <link rel="stylesheet" href="guardados.css"> 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configuración de Accesibilidad</h2>
+                <button id="close-modal-btn" class="modal-close-btn">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-option">
+                    <label for="font-size-slider">Tamaño del Texto</label>
+                    <input type="range" id="font-size-slider" min="0.8" max="1.5" step="0.1" value="1">
+                    <span class="slider-value">Normal</span>
+                </div>
+                <hr class="modal-divider">
+                <div class="setting-option">
+                    <label>Lector de Publicaciones</label>
+                    <button id="tts-toggle-btn" class="btn-primary">
+                        <i class="fas fa-play"></i> Activar Lector
+                    </button>
+                    <p class="helper-text" id="tts-helper-text">
+                        Una vez activo, haz clic en cualquier publicación para escucharla.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeSidebar">✕</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="javascript:void(0);" onclick="redirectToHome()" class="sidebar-link" id="sidebar-link-inicio">
+                <div class="input-simulado"><h3>Inicio</h3></div>
+            </a>
+            
+            <a href="../Mundiales/Mundiales.html" class="sidebar-link" id="sidebar-link-mundiales">
+                <div class="input-simulado"><h3>Mundiales</h3></div>
+            </a>
+            
+            <a href="../Perfil/perfil.html" class="sidebar-link" id="sidebar-link-perfil">
+                <div class="input-simulado"><h3>Perfil</h3></div>
+            </a>
+            
+            <a href="../Saved/guardados.html" class="sidebar-link" id="sidebar-link-buscar">
+                <div class="input-simulado"><h3>Guardados</h3></div>
+            </a>
+            
+            <a href="../Inicio de sesion/login.html" class="sidebar-link"><div class="input-simulado"><h3>Cerrar Sesión</h3></div></a>
+            <a href="../Publicar/Publicar.html" class="sidebar-link"><div class="input-simulado"><h3>Publicar</h3></div></a>
+            <div class="sidebar-link" id="open-settings-btn" style="cursor: pointer;">
+                <div class="input-simulado"><h3><i class="fas fa-cog"></i> Configuración</h3></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="Container">
+        <button class="menu-hamburguesa" id="openSidebar">☰</button>
+        <a href="../Pagina inicio/TL.html" class="logo-link">
+            <img src="../Assets/Logo.png" alt="Logo" class="Logo">
+        </a>
+        <form id="search-form" class="search-box">
+            <input type="text" id="city" class="search-input" placeholder="Buscar..." name="q" required>
+            <button type="button" class="search-button" id="btnsearch">🔎</button>
+        </form>
+        <div class="Moodnight">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </div>
+    </header>
+
+    <main class="posts-container">
+        <h1>Mis Publicaciones Guardadas</h1>
+        <div id="guardadosContainer" class="posts-grid">
+            </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 INFOFUT. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../GLOBAL 1.0/global.js"></script>
+
+    <script>
+        
+        // Carga los posts guardados cuando todo esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarPostsGuardados();
+        });
+
+        function cargarPostsGuardados() {
+            // 'userType' viene de global.js
+            const storageKey = `savedPosts_${userType}`;
+            const savedIds = JSON.parse(localStorage.getItem(storageKey)) || [];
+            
+            const todasLasPublicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            const container = document.getElementById('guardadosContainer');
+            
+            const postsGuardados = todasLasPublicaciones.filter(post => 
+                savedIds.includes(post.id) 
+            );
+            
+            container.innerHTML = ''; 
+
+            if (postsGuardados.length === 0) {
+                container.innerHTML = '<p class="aviso-vacio">No tienes publicaciones guardadas todavía.</p>';
+                return;
+            }
+            
+            postsGuardados.forEach(publicacion => {
+                const postElement = crearElementoPost(publicacion);
+                container.appendChild(postElement);
+            });
+        }
+
+        function crearElementoPost(publicacion) {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post-card';
+            postDiv.id = `post-guardado-${publicacion.id}`; // ID único
+            
+            let mediaHTML = '';
+            if (publicacion.media) {
+                if (publicacion.media.tipo === 'imagen') {
+                    mediaHTML = `<div class="post-image"><img src="${publicacion.media.url}" alt="${publicacion.media.nombre}"></div>`;
+                } else {
+                    mediaHTML = `<div class="post-image"><video controls><source src="${publicacion.media.url}" type="video/mp4"></video></div>`;
+                }
+            } else {
+                postDiv.classList.add('post-card-no-media');
+            }
+            const tagsHTML = publicacion.tags.length > 0 
+                ? `<div class="post-tags">${publicacion.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}</div>` 
+                : '';
+
+            // 🔥 ¡AQUÍ ESTÁ EL ARREGLO DEL AVATAR! 🔥
+            // El 'global.css' ya tiene el estilo '.post-avatar', 
+            // pero el 'guardados.css' limpio también lo incluye.
+            postDiv.innerHTML = `
+                <div class="post-header">
+                    <img src="${publicacion.usuario.avatar}" alt="Avatar" class="post-avatar">
+                    <div class="post-user">
+                        <h4>${publicacion.usuario.nombre}</h4>
+                        <span>${publicacion.fecha}</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h3>${publicacion.titulo}</h3>
+                    <p>${publicacion.contenido}</p>
+                    ${tagsHTML}
+                    ${mediaHTML}
+                </div>
+                <div class="post-stats">
+                    <span><i class="far fa-heart"></i> ${publicacion.likes || 0}</span>
+                    <span><i class="far fa-comment"></i> ${publicacion.comentarios || 0}</span>
+                    <button class="post-btn saved" onclick="manejarQuitarGuardado(this, ${publicacion.id})">
+                        <i class="fas fa-bookmark"></i> Quitar
+                    </button>
+                </div>
+            `;
+            
+            // CONEXIÓN CON EL CEREBRO GLOBAL:
+            postDiv.addEventListener('click', (e) => {
+                if (e.target.closest('.post-btn')) return;
+                readPost(publicacion, postDiv);
+            });
+            
+            return postDiv;
+        }
+
+        function manejarQuitarGuardado(boton, postId) {
+            // 'userType' viene de global.js
+            const storageKey = `savedPosts_${userType}`;
+            let savedArray = JSON.parse(localStorage.getItem(storageKey)) || [];
+            
+            const postIndex = savedArray.indexOf(postId);
+
+            if (postIndex > -1) {
+                savedArray.splice(postIndex, 1);
+                localStorage.setItem(storageKey, JSON.stringify(savedArray));
+                eliminarPostDeVista(postId);
+            } 
+        }
+
+        function eliminarPostDeVista(postId) {
+            const postElement = document.getElementById(`post-guardado-${postId}`);
+            if (postElement) {
+                postElement.style.transition = 'opacity 0.5s ease';
+                postElement.style.opacity = '0';
+                setTimeout(() => {
+                    postElement.remove();
+                    const container = document.getElementById('guardadosContainer');
+                    if (container.children.length === 0) {
+                        container.innerHTML = '<p class="aviso-vacio">Ya no tienes publicaciones guardadas.</p>';
+                    }
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>

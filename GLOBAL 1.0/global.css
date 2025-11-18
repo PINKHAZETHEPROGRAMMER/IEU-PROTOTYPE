@@ -1,0 +1,696 @@
+/* =============================================
+   ESTILOS GLOBALES (EL "MOLDE") - VERSIÓN CORREGIDA
+   ============================================== */
+
+body {
+    background: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    /* ¡EL EMPUJÓN INICIAL PARA EL HEADER! */
+    padding-top: 100px; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Tipografía base */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Libre Franklin", sans-serif;
+}
+
+h3 {
+    color: #333;
+}
+
+/* =============================================
+   HEADER (.Container)
+   ============================================== */
+.Container {
+    position: fixed;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background-color: rgb(236, 164, 56);
+    height: 100px;
+    width: 100%; 
+    top: 0; 
+    left: 0;
+    z-index: 1000;
+    padding: 0; 
+    box-sizing: border-box; 
+    color: white;
+}
+
+.Logo{
+    height: 200px;
+    width: auto;
+    margin: 50px;
+    border-radius: 50%;
+    padding: 50px;
+    align-items: center;
+    top: 0; 
+    left: 0;
+    transition: transform 0.4s ease-out;
+}
+
+.logo-link {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+.logo-link:hover .Logo {
+    transform: scale(1.05);
+}
+
+/* =============================================
+   SIDEBAR (Menú Hamburguesa)
+   ============================================== */
+.menu-hamburguesa {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    background-color: rgb(236, 164, 56);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-hamburguesa:hover {
+    background-color: #b37614;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    transform: translateX(-100%);
+    max-width: 80%;
+    background-color: #f8f8f8; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 10000;   
+    transition: transform 0.4s ease-in-out; 
+}
+.sidebar.open {
+    transform: translateX(0); 
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: flex-end; 
+    padding: 15px;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); 
+    pointer-events: none; 
+    z-index: 9999; 
+    transition: background-color 0.4s ease-in-out; 
+}
+.sidebar-overlay.active {
+    background-color: rgba(0, 0, 0, 0.5); 
+    pointer-events: auto; 
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
+}
+
+.sidebar-content {
+    padding: 0 20px;
+}
+
+.input-simulado {
+    background-color: #ccc;
+    height: 35px;
+    margin: 20px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    transition: all 0.3s ease;
+    cursor: default; 
+}
+.sidebar-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.sidebar-link .input-simulado {
+    cursor: pointer; 
+}
+.input-simulado h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+.sidebar-link:hover .input-simulado {
+    background-color: #b1abab;
+    transform: translateX(5px);
+}
+
+/* =============================================
+   BARRA DE BÚSQUEDA
+   ============================================== */
+.search-box{
+    margin: 14px;
+    display: flex !important;
+    align-items: center !important;
+    border-radius: 25px;
+    background-color:rgb(255, 255, 255);
+    padding: 6px 10px !important;
+    overflow: hidden;
+    width: 500px;
+    border: 1px solid #555;
+}
+.search-input {
+    border: none!important;
+    outline: none!important;
+    background-color: transparent!important;
+    padding: 8px 15px!important; 
+    color: #ccc; 
+    font-size: 16px;
+    flex: 1!important;
+}
+.search-button{
+    border:orange;
+    border-radius: 10px;
+    background-color: orange;
+}
+
+/* =============================================
+   FOOTER
+   ============================================== */
+.footer {
+    background-color: rgb(236, 164, 56);
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    width: 100%;
+    font-family: "Libre Franklin", sans-serif;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.footer-links {
+    margin-top: 10px;
+}
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: #333;
+}
+
+/* =============================================
+   BOTONES GLOBALES (PRIMARIO Y SECUNDARIO)
+   ============================================== */
+
+/* 1. Estilos COMUNES para AMBOS botones */
+.btn-primary, 
+.btn-secondary {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: calc(1em * var(--font-scale, 1)); /* Con accesibilidad */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-primary:hover, 
+.btn-secondary:hover {
+    transform: translateY(-2px);
+}
+
+/* 2. Estilos ÚNICOS del botón Naranja */
+.btn-primary {
+    background: rgb(236, 164, 56);
+    color: white;
+}
+.btn-primary:hover {
+    background: rgb(173, 114, 24);
+}
+
+/* 3. Estilos ÚNICOS del botón Gris */
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+.btn-secondary:hover {
+    background: #545b62;
+}
+
+
+/* =============================================
+   DARK MODE Y BOTÓN DE TEMA
+   ============================================== */
+.theme-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: rgb(236, 164, 56);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 22px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 1000;
+}
+.theme-btn:hover {
+    background-color: rgb(173, 114, 24);
+    transform: scale(1.1);
+}
+
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f3f3f3;
+}
+body.dark-mode h3, 
+body.dark-mode .h3 {
+    color: #ddd;
+}
+body.dark-mode .footer {
+    background-color: #222;
+}
+body.dark-mode .footer-links a:hover {
+    color: rgb(236, 164, 56);
+}
+body.dark-mode .sidebar {
+    background-color:  #0b0c0e;
+}
+body.dark-mode .close-btn {
+    color: #f7fafc;
+}
+body.dark-mode .input-simulado {
+    background-color: #4a5568;
+}
+body.dark-mode .input-simulado h3 {
+    color: #f7fafc;
+}
+body.dark-mode .sidebar-link:hover .input-simulado {
+    background-color: #718096;
+}
+body.dark-mode .search-box {
+    background-color: #333;
+    border-color: #555; 
+}
+body.dark-mode .search-input {
+    color: #fff;
+}
+
+/* CORRECCIÓN DARK MODE PARA BOTONES */
+body.dark-mode .btn-primary {
+    background-color: rgb(236, 164, 56);
+    color: white;
+}
+body.dark-mode .btn-secondary {
+    background: #6c757d; /* Se queda gris */
+    color: white;
+}
+
+
+/* =============================================
+   MODAL DE ACCESIBILIDAD
+   ============================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.modal-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+.modal-overlay.visible .modal-content {
+    transform: scale(1);
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.4em;
+    color: #333;
+}
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #888;
+}
+.setting-option {
+    margin-bottom: 15px;
+}
+.setting-option label {
+    display: block;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 10px;
+}
+.setting-option input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+}
+.slider-value {
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+.modal-divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+.helper-text {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Resaltado para el Lector (TTS) */
+.post-card.is-reading {
+    box-shadow: 0 0 10px 5px rgb(236, 164, 56) !important;
+    border: 2px solid rgb(236, 164, 56) !important;
+}
+
+/* Dark Mode para el Modal */
+body.dark-mode .modal-content {
+    background: #222;
+}
+body.dark-mode .modal-header {
+    border-bottom-color: #444;
+}
+body.dark-mode .modal-header h2,
+body.dark-mode .setting-option label {
+    color: #f3f3f3;
+}
+body.dark-mode .modal-close-btn,
+body.dark-mode .slider-value,
+body.dark-mode .helper-text {
+    color: #aaa;
+}
+
+/* =============================================
+   RESPONSIVE (CORREGIDO)
+   ============================================== */
+
+/* --- [ MODO TABLET ] --- */
+@media (max-width: 768px) {
+    /* 1. ARREGLO DEL HEADER Y PADDING */
+    body {
+        padding-top: 80px; 
+    }
+
+    .Container {
+        height: 80px;
+        flex-wrap: nowrap;
+    }
+
+    /* 🔥 CORRECCIÓN DEL LOGO (MARGEN 0) 🔥 */
+    .Logo {
+        height:110px !important;
+        width: auto !important;
+        margin: 0 !important;  /* <-- ARREGLADO */
+        padding: 0 !important;
+    }
+
+    /* 2. TU IDEA: CONVERTIR SEARCH EN BOTÓN */
+    .search-box {
+        background: none;
+        border: none;
+        width: auto;
+        margin: 0;
+        padding: 0 !important;
+    }
+    .search-box .search-input {
+        display: none;
+    }
+    .search-button {
+        background-color: transparent;
+        color: white;
+        font-size: 24px;
+        padding: 5px;
+    }
+    .menu-hamburguesa {
+        position: static;
+        margin: 0 10px;
+        top: auto;
+        left: auto;
+    }
+}
+
+/* --- [ MODO TELÉFONO ] --- */
+@media (max-width: 480px) {
+    /* 1. ARREGLO DEL HEADER Y PADDING */
+    body {
+        padding-top: 60px;
+    }
+    .Container {
+        height: 60px;
+        gap: 10px;
+    }
+    
+    /* 🔥 CORRECCIÓN DEL LOGO (MÁS CHICO Y MARGEN 0) 🔥 */
+    .Logo {
+        height: 120px, !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .theme-btn {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* * ESTADO "EXPANDIDO" DE LA BÚSQUEDA (para JS)
+*/
+@media (max-width: 768px) {
+    .search-box.search-expanded {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background-color: white;
+        border-bottom: 1px solid #ccc;
+        z-index: 999;
+        display: flex;
+        padding: 10px !important;
+    }
+    .search-box.search-expanded .search-input {
+        display: block;
+        flex: 1;
+        color: #333;
+    }
+    .search-box.search-expanded .search-button {
+        background-color: orange;
+        color: white;
+        font-size: 16px;
+    }
+    
+    /* Ajuste para header de teléfono */
+    @media (max-width: 480px) {
+        .search-box.search-expanded {
+            top: 60px;
+        }
+    }
+}
+
+/* =============================================
+   BOTÓN DE ELIMINAR (PARA ADMIN)
+   ============================================== */
+.delete-btn {
+    background: none;
+    border: none;
+    color: #dc3545; /* Rojo peligro */
+    cursor: pointer;
+    font-size: calc(0.9rem * var(--font-scale, 1));
+    margin-left: auto; /* Lo empuja a la derecha si usas flexbox */
+    padding: 5px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+    color: #a71d2a; /* Rojo más oscuro */
+    transform: scale(1.1);
+}
+
+/* En modo oscuro */
+body.dark-mode .delete-btn {
+    color: #ff6b6b;
+}
+
+/* =============================================
+   SECCIÓN DE COMENTARIOS
+   ============================================== */
+
+.comments-section {
+    border-top: 1px solid #eee;
+    padding: 15px;
+    background-color: #fdfdfd;
+    border-radius: 0 0 12px 12px;
+    margin-top: 10px;
+}
+
+.comments-list {
+    margin-bottom: 15px;
+    max-height: 200px;
+    overflow-y: auto; /* Scroll si hay muchos */
+}
+
+.comment-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: calc(0.9em * var(--font-scale, 1));
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 8px;
+}
+
+.comment-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-user {
+    font-weight: 700;
+    color: #333;
+    font-size: 0.9em;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.comment-text {
+    color: #555;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Input para comentar */
+.comment-input-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: calc(0.9em * var(--font-scale, 1));
+    font-family: 'Montserrat', sans-serif;
+}
+
+.comment-submit-btn {
+    background-color: rgb(236, 164, 56);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+.comment-submit-btn:hover {
+    background-color: #d35400;
+}
+
+/* Botón de borrar comentario (Solo Admin) */
+.delete-comment-btn {
+    background: none;
+    border: none;
+    color: #dc3545; /* Rojo */
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 5px;
+    opacity: 0.7;
+}
+.delete-comment-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Dark Mode */
+body.dark-mode .comments-section {
+    background-color: #1f2229;
+    border-top-color: #333;
+}
+body.dark-mode .comment-user { color: #f7fafc; }
+body.dark-mode .comment-text { color: #ccc; }
+body.dark-mode .comment-input {
+    background-color: #333;
+    border-color: #555;
+    color: white;
+}

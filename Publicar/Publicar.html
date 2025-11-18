@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Publicación</title>
+    <link rel="stylesheet" href="Publicar.css">
+    
+    <link rel="stylesheet" href="../GLOBAL 1.0/global.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configuración de Accesibilidad</h2>
+                <button id="close-modal-btn" class="modal-close-btn">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-option">
+                    <label for="font-size-slider">Tamaño del Texto</label>
+                    <input type="range" id="font-size-slider" min="0.8" max="1.5" step="0.1" value="1">
+                    <span class="slider-value">Normal</span>
+                </div>
+                <hr class="modal-divider">
+                <div class="setting-option">
+                    <label>Lector de Publicaciones</label>
+                    <button id="tts-toggle-btn" class="btn-primary">
+                        <i class="fas fa-play"></i> Activar Lector
+                    </button>
+                    <p class="helper-text" id="tts-helper-text">
+                        Esta función está disponible en las páginas de perfil y en el inicio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeSidebar">✕</button>
+        </div>
+        <div class="sidebar-content">
+            <a href="javascript:void(0);" onclick="redirectToHome()" class="sidebar-link" id="sidebar-link-inicio">
+                <div class="input-simulado"><h3>Inicio</h3></div>
+            </a>
+            
+            <a href="../Mundiales/Mundiales.html" class="sidebar-link" id="sidebar-link-mundiales">
+                <div class="input-simulado"><h3>Mundiales</h3></div>
+            </a>
+            
+            <a href="../Perfil/perfil.html" class="sidebar-link" id="sidebar-link-perfil">
+                <div class="input-simulado"><h3>Perfil</h3></div>
+            </a>
+            
+            <a href="../Saved/guardados.html" class="sidebar-link" id="sidebar-link-buscar">
+                <div class="input-simulado"><h3>Guardados</h3></div>
+            </a>
+            
+            <a href="../Inicio de sesion/login.html" class="sidebar-link"><div class="input-simulado"><h3>Cerrar Sesión</h3></div></a>
+            <a href="../Publicar/Publicar.html" class="sidebar-link"><div class="input-simulado"><h3>Publicar</h3></div></a>
+            <div class="sidebar-link" id="open-settings-btn" style="cursor: pointer;">
+                <div class="input-simulado"><h3><i class="fas fa-cog"></i> Configuración</h3></div>
+            </div>
+            </div>
+        </div>
+    </aside>
+
+    <header class="Container">
+        <button class="menu-hamburguesa" id="openSidebar">☰</button>
+        <a href="../Pagina inicio/TL.html" class="logo-link" id="logo-link-header">
+            <img src="../Assets/Logo.png" alt="Logo" class="Logo">
+        </a>
+        <form id="search-form" class="search-box">
+            <input type="text" id="city" class="search-input" placeholder="Buscar..." name="q" required>
+            <button type="button" class="search-button" id="btnsearch">🔎</button>
+        </form>
+        <div class="Moodnight">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </div>
+    </header>
+
+    <main class="create-post-section">
+        <h1>Crear una publicación</h1>
+        
+        <form id="postForm" class="post-form">
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" placeholder="Escribe el título de tu publicación" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contenido">Contenido:</label>
+                <textarea id="contenido" name="contenido" rows="6" placeholder="Escribe el texto aquí..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tags">Categorías:</label>
+                <div class="tags-container" id="tagsContainer">
+                    </div>
+                <div class="custom-tags-input">
+                    <input type="text" id="customTags" name="customTags" placeholder="Añade tus propias etiquetas (separadas por comas)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="archivo">Archivo multimedia (imagen o video):</label>
+                <input type="file" id="archivo" name="archivo" accept="image/*,video/*">
+            </div>
+
+            <button type="submit" class="cta-button">Publicar</button>
+        </form>
+
+        <div id="preview"></div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 INFOFUT. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../GLOBAL 1.0/global.js"></script>
+    
+    <script>
+        
+        // --- Variables solo para esta página ---
+        const categorias = [
+            "HISTORIA MUNDIALES", "MUNDIAL 1930-1954", "MUNDIAL 1958-1970", 
+            "MUNDIAL 1974-1986", "MUNDIAL 1990-2002", "MUNDIAL 2006-2018",
+            "MUNDIAL 2022", "MUNDIAL 2026", "LEYENDAS MUNDIALES", 
+            "GOLLAZOS HISTÓRICOS", "EQUIPOS CAMPEONES", "SELECCIONES MUNDIALISTAS",
+            "MÁXIMOS GOLEADORES", "MEJORES JUGADORES", "MOMENTOS ÉPICOS",
+            "POLÉMICAS MUNDIALISTAS", "SEDES MUNDIALES", "TROFEO MUNDIAL",
+            "CLÁSICOS MUNDIALISTAS", "CURIOSIDADES MUNDIALES"
+        ];
+
+        const usuarioNormal = {
+            nombre: "Barbara",
+            username: "@BarbaraCodes", 
+            avatar: "../Assets/Santi.jpg",
+            esAdmin: false
+        };
+
+        const usuarioAdmin = {
+            nombre: "Marco",
+            username: "@MakoMako", 
+            avatar: "../Assets/Chucho.jpg",
+            esAdmin: true
+        };
+
+        // Definimos al usuario activo
+        const userType_publicar = localStorage.getItem('currentUser') || 'normal';
+        let usuarioActivo = userType_publicar === 'admin' ? usuarioAdmin : usuarioNormal;
+
+        console.log('📝 Publicando como:', usuarioActivo.nombre);
+
+        
+        // --- Lógica que se ejecuta al cargar ESTA página ---
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // 🔥 AQUÍ ESTÁ LA SOLUCIÓN: FORZAR EL CAMBIO DE LINKS 🔥
+            // Si es admin, reescribimos los enlaces manualmente
+            if (usuarioActivo.esAdmin) {
+                console.log("Forzando links de Admin en Publicar.html");
+                
+                const linkInicio = document.getElementById('sidebar-link-tl');
+                const linkPerfil = document.getElementById('sidebar-link-perfil');
+                const linkLogo = document.getElementById('logo-link-header');
+
+                if (linkInicio) linkInicio.href = '../Pagina Inicio Admin/TLAdmin.html';
+                if (linkPerfil) linkPerfil.href = '../Perfil Admin/perfil Admin.html';
+                if (linkLogo) linkLogo.href = '../Pagina Inicio Admin/TLAdmin.html';
+            }
+
+            
+            // 1. Inicializar las etiquetas de categorías
+            const tagsContainer = document.getElementById('tagsContainer');
+            if (tagsContainer) {
+                categorias.forEach(categoria => {
+                    const tagElement = document.createElement('div');
+                    tagElement.className = 'tag-option';
+                    tagElement.textContent = categoria;
+                    tagElement.addEventListener('click', function() {
+                        this.classList.toggle('selected');
+                    });
+                    tagsContainer.appendChild(tagElement);
+                });
+            }
+            
+            // 2. Asignar evento al formulario de publicar
+            const postForm = document.getElementById('postForm');
+            if (postForm) {
+                postForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const titulo = document.getElementById('titulo').value;
+                    const contenido = document.getElementById('contenido').value;
+                    const archivo = document.getElementById('archivo').files[0];
+                    
+                    const selectedTags = Array.from(document.querySelectorAll('.tag-option.selected'))
+                        .map(tag => tag.textContent);
+                    
+                    const customTags = document.getElementById('customTags').value
+                        .split(',')
+                        .map(tag => tag.trim())
+                        .filter(tag => tag !== '');
+                    
+                    const allTags = [...selectedTags, ...customTags];
+
+                    const nuevaPublicacion = {
+                        id: Date.now(),
+                        titulo: titulo,
+                        contenido: contenido,
+                        tags: allTags,
+                        fecha: new Date().toLocaleString('es-ES', { 
+                            year: 'numeric', month: 'long', day: 'numeric',
+                            hour: '2-digit', minute: '2-digit'
+                        }),
+                        likes: 0,
+                        comentarios: 0,
+                        media: null,
+                        usuario: {
+                            nombre: usuarioActivo.nombre,
+                            username: usuarioActivo.username,
+                            avatar: usuarioActivo.avatar,
+                            esAdmin: usuarioActivo.esAdmin
+                        }
+                    };
+
+                    if (archivo) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            nuevaPublicacion.media = {
+                                tipo: archivo.type.startsWith('image/') ? 'imagen' : 'video',
+                                url: e.target.result,
+                                nombre: archivo.name
+                            };
+                            guardarPublicacion(nuevaPublicacion);
+                        };
+                        reader.readAsDataURL(archivo);
+                    } else {
+                        guardarPublicacion(nuevaPublicacion);
+                    }
+                });
+            } 
+        }); // Fin del DOMContentLoaded
+
+
+        // --- Funciones solo para esta página ---
+
+        function guardarPublicacion(publicacion) {
+            let publicaciones = JSON.parse(localStorage.getItem('userPosts')) || [];
+            publicaciones.unshift(publicacion);
+            localStorage.setItem('userPosts', JSON.stringify(publicaciones));
+            
+            mostrarPrevisualizacion(publicacion);
+            
+            document.getElementById('postForm').reset();
+            document.querySelectorAll('.tag-option.selected').forEach(tag => {
+                tag.classList.remove('selected');
+            });
+
+            alert('¡Publicación creada exitosamente!');
+        }
+
+        function mostrarPrevisualizacion(publicacion) {
+            const preview = document.getElementById('preview');
+            
+            let mediaHTML = '';
+            if (publicacion.media) {
+                if (publicacion.media.tipo === 'imagen') {
+                    mediaHTML = `<div class="preview-media-container"><img src="${publicacion.media.url}" alt="${publicacion.media.nombre}" class="preview-media"></div>`;
+                } else {
+                    mediaHTML = `<div class="preview-media-container"><video controls class="preview-media"><source src="${publicacion.media.url}" type="video/mp4"></video></div>`;
+                }
+            }
+            
+            const tagsHTML = publicacion.tags.length > 0 
+                ? `<div class="preview-tags">${publicacion.tags.map(tag => `<span class="preview-tag">#${tag}</span>`).join('')}</div>` 
+                : '';
+
+            preview.innerHTML = `
+                <div class="preview-card">
+                    <h3>Vista Previa de tu Publicación:</h3>
+                    <div class="user-post-card">
+                        <div class="user-post-header">
+                            <img src="${publicacion.usuario.avatar}" alt="Avatar" class="user-post-avatar">
+                            <div class="user-post-user">
+                                <h4>${publicacion.usuario.nombre}</h4>
+                                <span>${publicacion.usuario.username} • ${publicacion.fecha}</span>
+                            </div>
+                        </div>
+                        <div class="user-post-content">
+                            <h3>${publicacion.titulo}</h3>
+                            <p>${publicacion.contenido}</p>
+                            ${tagsHTML}
+                            ${mediaHTML}
+                        </div>
+                        <div class="user-post-actions">
+                            <button class="user-post-btn"><i class="far fa-heart"></i> 0</button>
+                            <button class="user-post-btn"><i class="far fa-comment"></i> 0</button>
+                            <button class="user-post-btn"><i class="far fa-bookmark"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

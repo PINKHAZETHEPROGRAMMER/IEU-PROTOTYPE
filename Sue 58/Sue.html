@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suecia 58</title>
+    <link rel="stylesheet" href="Sue.css">
+    <link rel="stylesheet" href="../GLOBAL 1.0/info-mundial.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+body {
+background: #222;
+color: white;
+font-family: Arial, sans-serif;
+}
+.group-container {
+margin: 30px auto;
+width: 90%;
+max-width: 900px;
+border-radius: 12px;
+overflow: hidden;
+background: #b36a1d;
+padding-bottom: 10px;
+}
+.group-title {
+background: #e69138;
+padding: 12px;
+font-size: 22px;
+font-weight: bold;
+text-align: center;
+}
+.group-table {
+display: grid;
+grid-template-columns: 180px repeat(8, 50px);
+}
+.group-header, .group-row {
+display: contents;
+}
+.group-header span {
+background: #e69138;
+padding: 10px 0;
+text-align: center;
+font-weight: bold;
+border-bottom: 2px solid #d07a2c;
+}
+.group-row span {
+background: #986a2c;
+padding: 10px 0;
+text-align: center;
+border-bottom: 1px solid #8a5e24;
+}
+.team-name {
+text-align: left !important;
+padding-left: 12px !important;
+}
+.gd-plus { color: #4caf50; font-weight: bold; }
+.gd-minus { color: #ff5252; font-weight: bold; }
+
+body {
+background: #ffffff;
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 40px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+
+
+
+
+.bracket-container {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 40px;
+width: 100%;
+max-width: 1400px;
+}
+
+
+.round {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+
+.round h2 {
+text-align: center;
+margin-bottom: 10px;
+}
+
+
+.match {
+background: #e69138;
+padding: 14px 18px;
+border-radius: 10px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+font-size: 15px;
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+
+.team {
+    color: #5d2020;
+display: flex;
+justify-content: space-between;
+}
+
+
+.winner {
+font-weight: bold;
+color: #1a73e8;
+}
+</style>
+
+</head>
+<body>
+    
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeSidebar">✕</button>
+        </div>
+        
+        <div class="sidebar-content">
+            <a href="javascript:void(0);" onclick="redirectToHome()" class="sidebar-link" id="sidebar-link-inicio">
+                <div class="input-simulado"><h3>Inicio</h3></div>
+            </a>
+            
+            <a href="../Mundiales/Mundiales.html" class="sidebar-link" id="sidebar-link-mundiales">
+                <div class="input-simulado"><h3>Mundiales</h3></div>
+            </a>
+            
+            <a href="../Perfil/perfil.html" class="sidebar-link" id="sidebar-link-perfil">
+                <div class="input-simulado"><h3>Perfil</h3></div>
+            </a>
+            
+            <a href="../Saved/guardados.html" class="sidebar-link" id="sidebar-link-buscar">
+                <div class="input-simulado"><h3>Guardados</h3></div>
+            </a>
+            
+            <a href="../Inicio de sesion/login.html" class="sidebar-link"><div class="input-simulado"><h3>Cerrar Sesión</h3></div></a>
+            <a href="../Publicar/Publicar.html" class="sidebar-link"><div class="input-simulado"><h3>Publicar</h3></div></a>
+            <div class="sidebar-link" id="open-settings-btn" style="cursor: pointer;">
+                <div class="input-simulado"><h3><i class="fas fa-cog"></i> Configuración</h3></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="Container">
+        <button class="menu-hamburguesa" id="openSidebar">☰</button>
+        <a href="../Pagina inicio/TL.html" class="logo-link">
+            <img src="../Assets/Logo.png" alt="Logo" class="Logo">
+        </a>
+
+        <form id="search-form" class="search-box">
+            <input type="text" id="city" class="search-input" placeholder="Buscar..." name="q" required>
+            <button type="button" class="search-button" id="btnsearch">🔎</button>
+        </form>
+        <div class="Moodnight">
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </div>
+
+        
+    </main>
+
+    <div class="Title2" id="page-title"> 
+        <h1>País cede del Mundial 1958</h1>
+    </div>
+
+    <div class = "contenedor-mundiales">
+        <div class="contenedor-imagen">
+            <img src="../Assets/Suecia.png" alt="Bandera de Suecia">
+            <label>Suecia</label>
+        </div>
+    </div>
+
+    <div class="Title2"> 
+        <h4
+        id="page-summary">Suecia 1958 marcó el nacimiento de una leyenda y el inicio de una nueva era en el fútbol mundial. Brasil llegaba a la final con un plantel talentoso, pero fue un joven de apenas 17 años quien cambiaría la historia para siempre: Pelé. Del otro lado estaba Suecia, el país anfitrión, un equipo ordenado y fuerte físicamente que había sorprendido al eliminar rivales de peso para jugar la final ante su gente en Solna.
+El partido empezó con un golpe para Brasil cuando Suecia abrió el marcador, encendiendo a la afición local. Pero aquella selección brasileña tenía una madurez y una calma únicas pese a su juventud. Vavá apareció con dos goles oportunos que dieron la vuelta al encuentro antes del descanso, demostrando que Brasil tenía contundencia y frialdad en los momentos más duros.
+En la segunda parte, Pelé iluminó el mundo con una jugada que quedó inmortalizada: recibió un balón alto dentro del área, lo elevó por encima del defensor y, antes de que cayera al suelo, lo remató con una serenidad impropia de un adolescente. Más tarde marcaría otro gol de cabeza, completando una actuación histórica. Zagallo también aportó con un tanto, firmando el 5-2 definitivo.
+Cuando el árbitro pitó el final, Brasil levantó su primera Copa del Mundo, y Pelé, llorando en los brazos de sus compañeros, dejó claro que una estrella había nacido. Suecia 58 fue el comienzo del “Jogo Bonito” a nivel global, una final donde el mundo vio por primera vez la magia que cambiaría el fútbol para siempre.</h4>
+        <br>
+        <img src="../Assets/Brasil 58.jpg" alt="Brasil campeona">
+        <br>
+        <br>
+        
+        <br>
+        <h2>Resumen del Mundial</h2>
+        <br>
+        <h2>Fase de Grupos</h2>
+        <br>
+    </div>
+        
+
+<!-- GRUPO A -->
+<div class="group-container">
+ <div class="group-title">Grupo A</div>
+ <div class="group-table">
+   <div class="group-header">
+     <span>Selecciones</span><span>PJ</span><span>W</span><span>D</span><span>L</span><span>GF</span><span>GA</span><span>GD</span><span>PTS</span>
+   </div>
+
+   <div class="group-row"><span class="team-name">Suecia</span><span>3</span><span>2</span><span>1</span><span>0</span><span>4</span><span>1</span><span class="gd-plus">+3</span><span>5</span></div>
+   <div class="group-row"><span class="team-name">Gales</span><span>3</span><span>0</span><span>3</span><span>0</span><span>2</span><span>2</span><span class="gd-plus">0</span><span>3</span></div>
+   <div class="group-row"><span class="team-name">Hungría</span><span>3</span><span>1</span><span>1</span><span>1</span><span>5</span><span>3</span><span class="gd-plus">+2</span><span>3</span></div>
+   <div class="group-row"><span class="team-name">México</span><span>3</span><span>0</span><span>1</span><span>2</span><span>1</span><span>6</span><span class="gd-minus">-5</span><span>1</span></div>
+
+ </div>
+</div>
+
+
+
+
+<!-- GRUPO B -->
+<div class="group-container">
+ <div class="group-title">Grupo B</div>
+ <div class="group-table">
+   <div class="group-header">
+     <span>Selecciones</span><span>PJ</span><span>W</span><span>D</span><span>L</span><span>GF</span><span>GA</span><span>GD</span><span>PTS</span>
+   </div>
+
+   <div class="group-row"><span class="team-name">Francia</span><span>3</span><span>2</span><span>0</span><span>1</span><span>11</span><span>7</span><span class="gd-plus">+4</span><span>4</span></div>
+   <div class="group-row"><span class="team-name">Yugoslavia</span><span>3</span><span>2</span><span>0</span><span>1</span><span>7</span><span>6</span><span class="gd-plus">+1</span><span>4</span></div>
+   <div class="group-row"><span class="team-name">Escocia</span><span>3</span><span>1</span><span>0</span><span>2</span><span>4</span><span>8</span><span class="gd-minus">-4</span><span>2</span></div>
+   <div class="group-row"><span class="team-name">Paraguay</span><span>3</span><span>1</span><span>0</span><span>2</span><span>7</span><span>8</span><span class="gd-minus">-1</span><span>2</span></div>
+
+ </div>
+</div>
+
+
+
+
+<!-- GRUPO C -->
+<div class="group-container">
+ <div class="group-title">Grupo C</div>
+ <div class="group-table">
+   <div class="group-header">
+     <span>Selecciones</span><span>PJ</span><span>W</span><span>D</span><span>L</span><span>GF</span><span>GA</span><span>GD</span><span>PTS</span>
+   </div>
+
+   <div class="group-row"><span class="team-name">Brasil</span><span>3</span><span>2</span><span>1</span><span>0</span><span>5</span><span>0</span><span class="gd-plus">+5</span><span>5</span></div>
+   <div class="group-row"><span class="team-name">URSS</span><span>3</span><span>1</span><span>1</span><span>1</span><span>4</span><span>4</span><span class="gd-plus">0</span><span>3</span></div>
+   <div class="group-row"><span class="team-name">Inglaterra</span><span>3</span><span>0</span><span>3</span><span>0</span><span>4</span><span>4</span><span class="gd-plus">0</span><span>3</span></div>
+   <div class="group-row"><span class="team-name">Austria</span><span>3</span><span>0</span><span>1</span><span>2</span><span>2</span><span>7</span><span class="gd-minus">-5</span><span>1</span></div>
+
+ </div>
+</div>
+
+
+
+
+<!-- GRUPO D -->
+<div class="group-container">
+ <div class="group-title">Grupo D</div>
+ <div class="group-table">
+   <div class="group-header">
+     <span>Selecciones</span><span>PJ</span><span>W</span><span>D</span><span>L</span><span>GF</span><span>GA</span><span>GD</span><span>PTS</span>
+   </div>
+
+   <div class="group-row"><span class="team-name">Alemania Federal</span><span>3</span><span>1</span><span>2</span><span>0</span><span>7</span><span>5</span><span class="gd-plus">+2</span><span>4</span></div>
+   <div class="group-row"><span class="team-name">Irlanda del Norte</span><span>3</span><span>1</span><span>1</span><span>1</span><span>4</span><span>5</span><span class="gd-minus">-1</span><span>3</span></div>
+   <div class="group-row"><span class="team-name">Checoslovaquia</span><span>3</span><span>1</span><span>0</span><span>2</span><span>5</span><span>6</span><span class="gd-minus">-1</span><span>2</span></div>
+   <div class="group-row"><span class="team-name">Argentina</span><span>3</span><span>1</span><span>0</span><span>2</span><span>5</span><span>8</span><span class="gd-minus">-3</span><span>2</span></div>
+
+ </div>
+</div>
+
+
+
+
+<div class="bracket-container">
+
+<!-- CUARTOS DE FINAL -->
+<div class="round">
+ <h2>Cuartos</h2>
+
+ <div class="match"><div class="team winner">Brasil 1</div><div class="team">Gales 0</div></div>
+ <div class="match"><div class="team winner">Francia 4</div><div class="team">Irlanda del Norte 0</div></div>
+ <div class="match"><div class="team winner">Suecia 2</div><div class="team">URSS 0</div></div>
+ <div class="match"><div class="team winner">Alemania Federal 1</div><div class="team">Yugoslavia 0</div></div>
+</div>
+
+
+
+
+<!-- SEMIFINALES -->
+<div class="round">
+ <h2>Semifinales</h2>
+
+ <div class="match"><div class="team winner">Suecia 3</div><div class="team">Alemania Federal 1</div></div>
+ <div class="match"><div class="team winner">Brasil 5</div><div class="team">Francia 2</div></div>
+</div>
+
+
+
+
+<!-- FINAL -->
+<div class="round">
+ <h2>Final</h2>
+
+ <div class="match">
+   <div class="team winner">Brasil 5</div>
+   <div class="team">Suecia 2</div>
+ </div>
+
+</div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 INFOFUT. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+<script src="../GLOBAL 1.0/global.js"></script>
+    <script>
+    
+    /*Moodnight------------------------------------------------------------------------------------------------------------------*/
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.textContent = '☀️';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                toggleBtn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggleBtn.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        /*Redirección-------------------------------------------------------------------------------------------------------------------*/
+        document.getElementById('btnsearch').addEventListener('click', function (event) {
+            event.preventDefault();
+            window.location.href = '../Searchres/Searchres.html';
+        });
+
+        /*Menu hamburguesa y overlay----------------------------------------------------------------------------------------------------*/
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const openBtn = document.getElementById('openSidebar');
+            const closeBtn = document.getElementById('closeSidebar');
+
+            openBtn.addEventListener('click', function() {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+            });
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active'); 
+            }
+
+            closeBtn.addEventListener('click', closeSidebar);
+            overlay.addEventListener('click', closeSidebar);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('active');
+                    
+                    setTimeout(() => {
+                    }, 300);
+                });
+            });
+        
+            const allInputs = document.querySelectorAll('.input-simulado');
+            allInputs.forEach(input => {
+                if (!input.querySelector('h3')) {
+                    const text = input.textContent || input.innerText;
+                    input.innerHTML = `<h3>${text}</h3>`;
+                }
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ======================================================
+            // 1. CONFIGURACIÓN DE LA PÁGINA (¡CAMBIA ESTO EN CADA ARCHIVO!)
+            // ======================================================
+            const pageID = 'sue58'; // Ejemplo: 'mex70', 'fra38', etc.
+
+            // ======================================================
+            // 2. OBTENER EL TIPO DE USUARIO
+            // ======================================================
+            // Intenta obtenerlo de global.js, si no, lo saca directo de localStorage
+            const userType = localStorage.getItem('currentUser') || 'normal';
+
+            // ======================================================
+            // 3. ELEMENTOS A EDITAR
+            // ======================================================
+            const titleElement = document.getElementById('page-title');
+            const summaryElement = document.getElementById('page-summary');
+
+            // Función Maestra para conectar un elemento
+            function setupEditableElement(element, suffixId) {
+                if (!element) return;
+
+                // Clave única para guardar en memoria (Ej: edit_sui54_title)
+                const storageKey = `edit_${pageID}_${suffixId}`;
+
+                // A) CARGAR DATOS GUARDADOS (Para que todos vean los cambios)
+                const savedContent = localStorage.getItem(storageKey);
+                if (savedContent) {
+                    element.innerText = savedContent; // innerText respeta saltos de línea
+                }
+
+                // B) SI ES ADMIN: ACTIVAR EDICIÓN
+                if (userType === 'admin') {
+                    // Hacerlo editable
+                    element.contentEditable = "true";
+                    element.classList.add('admin-editable'); // Estilo visual
+
+                    // Guardar automáticamente al salir (blur)
+                    element.addEventListener('blur', () => {
+                        const newContent = element.innerText;
+                        localStorage.setItem(storageKey, newContent);
+                        
+                        // Efecto visual de "Guardado"
+                        element.style.borderColor = "#2ecc71"; // Verde momentáneo
+                        setTimeout(() => {
+                            element.style.borderColor = "transparent"; // Regresa a invisible
+                        }, 800);
+                        
+                        console.log(`Guardado en ${storageKey}:`, newContent);
+                    });
+
+                    // Evitar salto de línea con Enter en títulos (Opcional)
+                    if(element.tagName === 'H1') {
+                        element.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') {
+                                e.preventDefault();
+                                element.blur(); // Guarda y sale
+                            }
+                        });
+                    }
+                }
+            }
+
+            // ======================================================
+            // 4. INICIALIZAR
+            // ======================================================
+            setupEditableElement(titleElement, 'title');
+            setupEditableElement(summaryElement, 'summary');
+            
+        });
+        </script>
+        </body>
+</html>

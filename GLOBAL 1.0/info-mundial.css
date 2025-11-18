@@ -1,0 +1,285 @@
+/* =============================================
+   ESTILOS ÚNICOS DE PÁGINAS DE INFO-MUNDIAL
+   (Para Mex.html, Sue.html, Fra.html, etc.)
+   ============================================== */
+
+body {
+    background-color: #f4f4f4; 
+}
+
+/* --- Contenedor del Texto Principal e Imagen --- */
+.Title2 {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.Title2 h1 {
+    font-size: calc(2.5em * var(--font-scale, 1));
+    font-weight: 700;
+    color: #333;
+}
+
+/* Título editable por Admin */
+.Title2 h1.admin-editable:hover,
+.Title2 h1.admin-editable:focus {
+    background-color: rgba(236, 164, 56, 0.1);
+    outline: 2px dashed rgb(236, 164, 56);
+    cursor: text;
+}
+
+.Title2 h2 {
+    font-size: calc(2em * var(--font-scale, 1));
+    font-weight: 600;
+    color: #444;
+    margin-top: 40px;
+    border-bottom: 2px solid rgb(236, 164, 56);
+    padding-bottom: 10px;
+}
+
+.Title2 h4 {
+    font-size: calc(1.1em * var(--font-scale, 1));
+    color: #555;
+    line-height: 1.7;
+    text-align: left;
+    white-space: pre-line;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Texto editable por Admin */
+.Title2 h4.admin-editable:hover,
+.Title2 h4.admin-editable:focus {
+    background-color: rgba(236, 164, 56, 0.1);
+    outline: 2px dashed rgb(236, 164, 56);
+    cursor: text;
+}
+
+.Title2 img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    margin-top: 10px;
+}
+
+/* Contenedor para la banderita del país */
+.contenedor-mundiales {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.contenedor-imagen {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contenedor-imagen img {
+    width: 260px;
+    height: 180px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.contenedor-imagen label {
+    display: block;
+    margin-top: 12px;
+    font-size: calc(1.4rem * var(--font-scale, 1));
+    color: #000000;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* --- Estilos de Tablas de Grupo --- */
+.group-container {
+    margin: 30px auto;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fdfdfd;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    cursor: pointer; /* Para indicar que se puede leer */
+    transition: transform 0.2s;
+}
+.group-container:hover {
+    transform: translateY(-3px);
+}
+
+.group-title {
+    background: #e69138;
+    padding: 12px;
+    font-size: calc(1.4em * var(--font-scale, 1));
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+.group-table {
+    display: grid;
+    grid-template-columns: 2fr repeat(8, 1fr); 
+    font-size: calc(0.9em * var(--font-scale, 1));
+}
+.group-header, .group-row {
+    display: contents;
+}
+.group-header span {
+    background: #f1f3f4;
+    padding: 10px 5px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    color: #333;
+}
+.group-row span {
+    background: #fff;
+    padding: 10px 5px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    color: #555;
+}
+.team-name {
+    text-align: left !important;
+    padding-left: 12px !important;
+    font-weight: 600;
+}
+.gd-plus { color: #28a745; font-weight: bold; }
+.gd-minus { color: #dc3545; font-weight: bold; }
+
+/* --- Estilos del Bracket (Llaves) --- */
+.bracket-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 10px;
+}
+.round {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.round h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: calc(1.5em * var(--font-scale, 1));
+    color: #333;
+}
+.match {
+    background: #fff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: calc(0.95em * var(--font-scale, 1));
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.match:hover {
+    transform: scale(1.02);
+}
+.team {
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+}
+.team.winner {
+    font-weight: bold;
+    color: #0078d4;
+}
+
+/* --- Resaltado para el Lector (TTS) --- */
+.group-container.is-reading,
+.match.is-reading,
+.Title2 h4.is-reading {
+    box-shadow: 0 0 10px 5px rgb(236, 164, 56) !important;
+    border: 2px solid rgb(236, 164, 56) !important;
+}
+
+/* --- Dark Mode --- */
+body.dark-mode {
+    background-color: #1a1a1a;
+}
+body.dark-mode .Title2 h1,
+body.dark-mode .Title2 h2,
+body.dark-mode .contenedor-imagen label {
+    color: #f3f3f3;
+}
+body.dark-mode .Title2 h4 {
+    color: #ccc;
+}
+body.dark-mode .group-container,
+body.dark-mode .match {
+    background: #222;
+    border: 1px solid #333;
+}
+body.dark-mode .group-header span {
+    background: #333;
+    color: #f3f3f3;
+    border-bottom: 2px solid #444;
+}
+body.dark-mode .group-row span {
+    background: #222;
+    color: #ccc;
+    border-bottom: 1px solid #333;
+}
+body.dark-mode .round h2 {
+    color: #f3f3f3;
+}
+body.dark-mode .team {
+    color: #ccc;
+}
+body.dark-mode .team.winner {
+    color: #4dabf7;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .group-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .group-header, .group-row {
+        display: grid;
+        grid-template-columns: 150px repeat(8, 40px);
+    }
+    .bracket-container {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 480px) {
+    .Title2 h1 { font-size: calc(2em * var(--font-scale, 1)); }
+    .Title2 h2 { font-size: calc(1.6em * var(--font-scale, 1)); }
+}
+
+/* --- Estilos para el Modo Edición (Solo Admin lo verá) --- */
+.admin-editable {
+    border: 2px dashed transparent; /* Invisible para normales */
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Cuando el admin pasa el mouse */
+.admin-editable:hover {
+    border-color: #e69138; /* Naranja del tema */
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: text;
+}
+
+/* Cuando el admin está escribiendo */
+.admin-editable:focus {
+    background-color: white;
+    color: black;
+    outline: none;
+    border-color: #2ecc71; /* Verde */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}

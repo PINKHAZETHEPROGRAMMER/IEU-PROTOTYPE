@@ -1,0 +1,181 @@
+/* =============================================
+   ESTILOS ÚNICOS DE REGISTRO.HTML
+   (Todo lo demás del header/footer/sidebar está en global.css)
+   ============================================== */
+
+body {
+    height: 100vh;
+    margin: 0;
+    /* GRADIENTE DE FONDO */
+    background: linear-gradient(-45deg, #f7ce8c, #f59e95, #e5b3f8, #d3c8fc );
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+    display: flex;
+    flex-direction: column;
+    /* position: relative; es importante para el footer */
+    position: relative; 
+}
+
+/* Pseudo-elemento para Dark Mode (el fondo oscuro) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+}
+
+body.dark-mode::before {
+    opacity: 1;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Título */
+.title {
+    text-align: center;
+    justify-content: center;
+    padding: 40px 15px; 
+    margin-top: 50px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.title h2 {
+    font-family: "Libre Franklin", sans-serif;
+    text-align: center;
+    /* 🔥 CORREGIDO: Tamaño de fuente responsivo 🔥 */
+    font-size: clamp(2.5rem, 8vw, 4rem); 
+    margin-bottom: 25px;
+    color: #0e0d0d;
+    font-weight: 600;
+}
+
+/* Contenedor del Formulario */
+.Register-form1 {
+    margin: 20px auto 40px auto; /* Margen superior y centrado */
+    max-width: 450px; 
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    flex-grow: 1; /* Permite que el formulario ocupe espacio extra */
+}
+
+/* Estructura de las Barras (Nombre, Apellido, etc.) */
+.bar1, .bar2, .bar3, .bar4, .bar5 {
+    display: flex; 
+    margin-bottom: 15px;
+    width: 100%; 
+    flex-direction: column; /* Apila el título y el input */
+}
+
+/* Títulos de Input (Nombre, Apellido) */
+.bar1 h4, .bar2 h4, .bar3 h4, .bar4 h4, .bar5 h4 {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 1em;
+    color: #323130;
+}
+
+/* Estilo de los Inputs */
+.FormForm input[type="email"],
+.FormForm input[type="password"], 
+.FormForm input[type="text"] {
+    padding: 12px;
+    margin-bottom: 0; /* Quitamos el margen para que los contenedores lo manejen */
+    border: 1px solid #c8c6c4;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+/* Botones */
+.Botones {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px; 
+    gap: 15px;
+    align-items: center;
+}
+
+.Regresar, .Registrarse {
+    flex: 1; 
+    padding: 12px 0;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.Registrarse {
+    background-color: rgb(236, 113, 56);
+    color: white;
+}
+.Registrarse:hover {
+    background-color: #d35400; 
+}
+
+/* --- Dark Mode (Específico de Registro) --- */
+
+body.dark-mode .title h2,
+body.dark-mode .bar1 h4,
+body.dark-mode .bar2 h4,
+body.dark-mode .bar3 h4,
+body.dark-mode .bar4 h4,
+body.dark-mode .bar5 h4 {
+    color: #f3f3f3;
+}
+
+body.dark-mode .Register-form1 {
+    background-color: #1f2229;
+    box-shadow: 0 6px 18px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .Regresar {
+    background-color: #444;
+    color: #f3f3f3;
+}
+body.dark-mode .Regresar:hover {
+    background-color: #555;
+}
+
+/* --- Responsive (Optimización móvil) --- */
+@media (max-width: 480px) {
+    .Register-form1 {
+        margin: 15px 10px;
+        padding: 20px;
+    }
+    
+    .Botones {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .Regresar, .Registrarse {
+        max-width: 100%; 
+    }
+}
+
+

@@ -1,0 +1,539 @@
+/* =============================================
+   ESTILOS ÚNICOS DE TL.HTML (INICIO)
+   (Todo lo demás está en global.css)
+   ============================================== */
+
+/* --- Carrusel --- */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 50vw;
+    max-height: 500px;
+    min-height: 300px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    /* margin-top ya no es necesario, body tiene padding-top */
+}
+
+.carousel-inner {
+    display: flex;
+    width: 300%; /* Asumiendo 3 imágenes */
+    height: 100%;
+    transition: transform 1s ease-in-out;
+}
+
+.carousel-item {
+    width: 33.333%;
+    flex-shrink: 0;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    font-size: clamp(20px, 4vw, 30px);
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+.carousel-btn:hover {
+    background-color: rgba(0,0,0,0.7);
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* --- Sección Título "Descubre" --- */
+.Title2 h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+    text-align: center;
+    background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent;
+    -webkit-text-fill-color: transparent; 
+    background-size: 200% auto;
+    animation: shine 4s linear infinite;
+    cursor: pointer;
+    padding: 20px;
+    animation-play-state: paused;
+    transition: transform 0.4s ease-out;
+}
+@keyframes shine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+.Title2 h1:hover {
+    animation-play-state: running; 
+    transform: scale(1.05);
+}
+
+/* --- Estadísticas --- */
+.stats-section {
+    padding: 40px 20px;
+    background: #f8f9fa;
+    text-align: center;
+}
+.stats-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 700;
+}
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.stat-card {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+.stat-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.stat-value {
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    font-weight: bold;
+    color: #e67e22;
+    margin-bottom: 5px;
+}
+.stat-label { font-size: 1rem; color: #666; margin-bottom: 5px; }
+.stat-detail { font-size: 0.9rem; color: #888; font-style: italic; }
+
+/* --- Secciones de Posts (Destacados y Usuarios) --- */
+.featured-posts,
+.user-posts-section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.featured-posts h2,
+.user-posts-section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 700;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    align-items: stretch; /* Misma altura */
+}
+
+/* Estilo de tarjeta de post (compartido) */
+.post-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+.post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+}
+.post-user h4 {
+    margin: 0;
+    font-size: calc(1rem * var(--font-scale, 1));
+    color: #333;
+    font-weight: 600;
+}
+.post-user span {
+    font-size: calc(0.8rem * var(--font-scale, 1));
+    color: #888;
+}
+.post-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+.post-content h3 {
+    font-size: calc(1.2rem * var(--font-scale, 1));
+}
+.post-content p {
+    margin: 0 0 15px 0;
+    line-height: 1.5;
+    color: #333;
+    font-size: calc(1rem * var(--font-scale, 1));
+}
+.post-image {
+    margin: 15px 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.post-image img,
+.post-image video {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 400px;
+    object-fit: cover;
+}
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tag {
+    background: #e9ecef;
+    color: #495057;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: calc(0.8rem * var(--font-scale, 1));
+    font-weight: 500;
+}
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+}
+.post-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: calc(0.9rem * var(--font-scale, 1));
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.post-btn:hover { color: #e67e22; }
+.post-btn.liked { color: #e74c3c; }
+.post-btn.saved { color: #f39c12; }
+
+/* Badge de Admin */
+.admin-badge {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: #000;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: calc(0.7em * var(--font-scale, 1));
+    font-weight: bold;
+    margin-left: 8px;
+}
+/* Posts sin imagen */
+.post-card.post-card-no-media .post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 150px;
+}
+.post-card.post-card-no-media .post-content h3 {
+    font-size: calc(1.5em * var(--font-scale, 1)); 
+    text-align: center;
+}
+.post-card.post-card-no-media .post-content p {
+    font-size: calc(1.25em * var(--font-scale, 1)); 
+    text-align: center; 
+    font-weight: 500;
+}
+
+
+/* --- Jugadores Destacados --- */
+.top-players {
+    padding: 40px 20px;
+    background: #f8f9fa;
+}
+.top-players h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 700;
+}
+.players-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.player-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+.player-card:hover { transform: translateY(-5px); }
+.player-image { height: 200px; overflow: hidden; }
+.player-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.player-card:hover .player-image img { transform: scale(1.05); }
+.player-info { padding: 20px; text-align: center; }
+.player-info h3 { margin: 0 0 5px 0; font-size: 1.3rem; color: #333; }
+.player-info p { margin: 0 0 15px 0; color: #666; font-weight: 500; }
+.player-stats {
+    display: flex;
+    justify-content: space-around;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+.stat { text-align: center; }
+.stat span { display: block; font-size: 1.5rem; font-weight: bold; color: #e67e22; }
+.stat small { font-size: 0.8rem; color: #666; }
+
+/* --- Partidos (Schedule) --- */
+.schedule-container {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+.schedule-nav {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 10px;
+    justify-content: center;
+}
+.arrow {
+    background: none;
+    border: none;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: #666;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0 10px;
+}
+.match-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    width: 100%;
+    -ms-overflow-style: none; /* IE y Edge */
+    scrollbar-width: none;  /* Firefox */
+    gap: 15px;
+}
+.match-track::-webkit-scrollbar { display: none; } /* Chrome, Safari */
+.match-card {
+    flex-shrink: 0;
+    width: 280px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+.card-header .status {
+    display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; color: #555;
+}
+.match-details p { margin: 0; font-size: 0.9rem; color: #333; }
+.transmision-info { font-size: 0.8rem; color: #555; margin: 10px 0; }
+.channel-logos { display: flex; justify-content: center; gap: 5px; margin-top: 5px; }
+.cta-button {
+    background-color: rgb(236, 164, 56);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.cta-button:hover { background-color: #d35400; }
+.teams-logos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.team {
+    text-align: center;
+}
+
+.team h4 {
+    margin: 0;
+    font-size: calc(1.1em * var(--font-scale, 1));
+    color: #333;
+}
+
+.divider {
+    font-size: calc(1.5em * var(--font-scale, 1));
+    font-weight: 700;
+    color: #333;
+    margin: 5px 0;
+}
+
+/* --- Dark Mode para esos estilos --- */
+body.dark-mode .team h4 {
+    color: #f7fafc;
+}
+
+body.dark-mode .divider {
+    color: #f7fafc;
+}
+
+/* --- Dark Mode (Específico de TL.html) --- */
+body.dark-mode .stats-section,
+body.dark-mode .top-players,
+body.dark-mode .player-stats {
+    background: #1a1a1a;
+}
+body.dark-mode .stats-section h2,
+body.dark-mode .featured-posts h2,
+body.dark-mode .user-posts-section h2,
+body.dark-mode .top-players h2 {
+    color: #f7fafc;
+}
+body.dark-mode .stat-card,
+body.dark-mode .post-card,
+body.dark-mode .player-card {
+    background: #222;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+}
+body.dark-mode .stat-label,
+body.dark-mode .stat-detail,
+body.dark-mode .post-user span,
+body.dark-mode .post-btn,
+body.dark-mode .player-info p,
+body.dark-mode .stat small,
+body.dark-mode .arrow,
+body.dark-mode .card-header .status,
+body.dark-mode .match-details p,
+body.dark-mode .transmision-info {
+    color: #cbd5e0;
+}
+body.dark-mode .post-user h4,
+body.dark-mode .post-content p,
+body.dark-mode .player-info h3,
+body.dark-mode .match-details h4 {
+    color: #f7fafc;
+}
+body.dark-mode .post-header,
+body.dark-mode .post-actions {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+body.dark-mode .tag {
+    background: #4a5568;
+    color: #cbd5e0;
+}
+body.dark-mode .match-card {
+    border: 1px solid #333;
+    background-color: #222;
+}
+body.dark-mode .post-card.post-card-no-media .post-content p {
+    color: #e0e0e0;
+}
+body.dark-mode .post-card.post-card-no-media .post-content h3 {
+    color: #f8f9fa;
+}
+
+
+/* --- Responsive (Específico de TL.html) --- */
+/*
+ * NOTA: El responsive del HEADER ya está en global.css
+ * Esto es solo para el CONTENIDO del TL
+*/
+@media (max-width: 768px) {
+    .carousel {
+        /* margin-top ya no es necesario */
+        height: 40vw;
+        min-height: 200px;
+    }
+    .carousel-btn {
+        padding: 8px 12px;
+    }
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .stat-card {
+        padding: 20px 15px;
+    }
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+    .players-carousel {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .featured-posts, .stats-section, .top-players, .schedule-container {
+        padding: 30px 15px;
+    }
+    .match-card {
+        width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    .stat-card {
+        padding: 15px 10px;
+    }
+    .post-header, .post-content {
+        padding: 15px;
+    }
+    .player-image {
+        height: 150px;
+    }
+    .match-card {
+        width: 220px;
+        padding: 10px;
+    }
+    h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin: 15px 0;
+    }
+}
+
+
+

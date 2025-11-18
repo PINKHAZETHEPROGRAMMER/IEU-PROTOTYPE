@@ -1,0 +1,222 @@
+/* =============================================
+   ESTILOS ÚNICOS DE LOGIN.HTML
+   (Todo lo demás está en global.css)
+   ============================================== */
+
+/* Contenedor del formulario */
+.Form-container {
+    margin: 20px auto 40px auto; /* Margen chico, body ya empuja */
+    max-width: 600px;
+    width: 90%; /* Más flexible en móvil */
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 40px 30px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box; /* Importante para que el padding no lo rompa */
+}
+
+.FormForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.FormForm h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #323130;
+    font-size: calc(2em * var(--font-scale, 1));
+}
+
+.FormForm h2 {
+    align-self: flex-start;
+    margin-bottom: 6px;
+    color: #605e5c;
+    font-weight: 500;
+    font-size: calc(1.1em * var(--font-scale, 1));
+}
+
+.FormForm input[type="email"],
+.FormForm input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #c8c6c4;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box; /* Importante */
+}
+
+.FormForm input[type="email"]:focus,
+.FormForm input[type="password"]:focus {
+    border-color: rgb(236, 164, 56);;
+}
+
+/* --- Tipo de Cuenta (Radio buttons) --- */
+.tipo-cuenta {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.tipo-cuenta h3 {
+  font-size: calc(1.1em * var(--font-scale, 1));
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.tipo-cuenta label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
+  font-size: calc(0.95rem * var(--font-scale, 1));
+  color: #444;
+  transition: color 0.2s ease;
+}
+
+.tipo-cuenta label:hover {
+  color: rgb(236, 164, 56);; 
+}
+
+.tipo-cuenta input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgb(236, 164, 56);;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tipo-cuenta input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  background-color: rgb(236, 164, 56);;
+  border-radius: 50%;
+}
+
+/* --- Texto de Registro --- */
+.Register-text {
+    width: 100%; 
+    text-align: left; 
+    margin-bottom: 25px; 
+    font-size: calc(0.9em * var(--font-scale, 1));
+}
+.Register-text h3 {
+    display: inline;
+    margin: 0;
+    color: #605e5c;
+}
+.Register-text a {
+    text-decoration: none;
+    color: rgb(236, 164, 56);;
+    font-weight: 600;
+}
+
+/* --- Botones --- */
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Añadido para que no se peguen en móvil */
+}
+
+.buttons button {
+    flex: 1; /* Para que ocupen el espacio */
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.buttons button:hover {
+    transform: scale(1.03);
+    filter: brightness(0.95);
+}
+
+.butsub {
+    background-color: #e1dfdd;
+    color: #323130;
+}
+.butsub:hover {
+    background-color: #c8c6c4;
+}
+
+.butin {
+    background-color: rgb(236, 164, 56);
+    color: white;
+}
+.butin:hover {
+    background-color: rgb(209, 123, 52);; /* Un azul más oscuro */
+}
+
+
+/* =============================================
+   DARK MODE (Solo para el formulario)
+   ============================================== */
+
+body.dark-mode .Form-container {
+    background-color: #222;
+    box-shadow: 0 6px 18px rgba(255, 255, 255, 0.05);
+}
+body.dark-mode .FormForm h1 {
+    color: #f3f3f3;
+}
+body.dark-mode .FormForm h2 {
+    color: #ddd;
+}
+body.dark-mode .tipo-cuenta label {
+    color: #ddd;
+}
+body.dark-mode .Register-text h3 {
+    color: #ccc;
+}
+body.dark-mode .butsub {
+    background-color: #444;
+    color: #f3f3f3;
+}
+body.dark-mode .butsub:hover {
+    background-color: #555;
+}
+
+/* =============================================
+   RESPONSIVE (Solo para el formulario)
+   ============================================== */
+
+@media (max-width: 480px) {
+    .Form-container {
+        margin: 15px 10px;
+        padding: 20px;
+        width: 90%;
+    }
+    
+    .tipo-cuenta {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start; /* Alinea los radios */
+    }
+
+    .buttons {
+        flex-direction: column; /* Apila los botones */
+        gap: 10px;
+    }
+}

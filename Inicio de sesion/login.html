@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - INFOFUT</title>
+    
+    <link rel="stylesheet" href="../GLOBAL 1.0/global.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configuración de Accesibilidad</h2>
+                <button id="close-modal-btn" class="modal-close-btn" aria-label="Configracion Accesibilidad">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-option">
+                    <label for="font-size-slider">Tamaño del Texto</label>
+                    <input type="range" id="font-size-slider" min="0.8" max="1.5" step="0.1" value="1">
+                    <span class="slider-value">Normal</span>
+                </div>
+                <hr class="modal-divider">
+                <div class="setting-option">
+                    <label>Lector de Publicaciones</label>
+                    <button id="tts-toggle-btn" class="btn-primary" aria-label="Texto a Voz">
+                        <i class="fas fa-play"></i> Activar Lector
+                    </button>
+                    <p class="helper-text" id="tts-helper-text">
+                        Esta función está disponible en las páginas de perfil y en el inicio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeSidebar" aria-label="Salir del Menu hamburguesa">✕</button>
+        </div>
+        <div class="sidebar-content">
+            
+            <a href="../Mundiales/Mundiales.html" class="sidebar-link" id="sidebar-link-mundiales">
+                <div class="input-simulado"><h3>Mundiales</h3></div>
+            </a>
+            <div class="sidebar-link" id="open-settings-btn" style="cursor: pointer;">
+                <div class="input-simulado"><h3><i class="fas fa-cog"></i> Configuración</h3></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="Container">
+        <button class="menu-hamburguesa" id="openSidebar" aria-label="Abrir SideBar">☰</button>
+        <a class="logo-link">
+            <img src="../Assets/Logo.png" alt="Logo" class="Logo">
+        </a>
+        <form id="search-form" class="search-box">
+            <input type="text" id="city" class="search-input" placeholder="Buscar..." name="q" required>
+            <button type="button" class="search-button" id="btnsearch" aria-label="Buscar">🔎</button>
+        </form>
+        <div class="Moodnight">
+            <button id="theme-toggle" class="theme-btn" aria-label="Modo oscuro">🌙</button>
+        </div>
+    </header>
+
+    <div class="Form-container">
+        <form class="FormForm">
+            <h1>Inicio de sesión</h1>
+
+            <h2>Correo electrónico</h2>
+            <label for="email"></label>
+            <input type="email" id="email" name="email">
+
+            <h2>Contraseña</h2>
+            <label for="password"></label>
+            <input type="password" id="password" name="password">
+
+            <div class="tipo-cuenta">
+                <h2>Tipo de cuenta</h2>
+                <label>
+                    <input type="radio" name="tipoCuenta" value="usuario" aria-label="User" checked>
+                    Usuario
+                </label>
+                <label>
+                    <input type="radio" name="tipoCuenta" value="administrador" aria-label="Admin">
+                    Administrador
+                </label>
+            </div>
+
+            <div class="Register-text">
+                <h2>¿No estás registrado?</h2>
+                <a href="../Registro/registro.html" target="_self" aria-label="Registro">Regístrate aquí.</a>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="butsub" aria-label="Regresar">Regresar</button>
+                <button type="button" class="butin" id="btnini" aria-label="Iniciar Sesion">Iniciar sesión</button>
+            </div>
+        </form>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 INFOFUT. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </footer>
+<script src="../GLOBAL 1.0/global.js"></script>
+    <script src="../GLOBAL 1.0/global.js"></script>
+
+    <script>
+        // Este es el ÚNICO script que necesita esta página
+        document.getElementById('btnini').addEventListener('click', function(event) {
+            event.preventDefault(); 
+            
+            // Revisa qué radio button está seleccionado
+            const tipo = document.querySelector('input[name="tipoCuenta"]:checked').value;
+            
+            // ¡ESTO ES LO MÁS IMPORTANTE!
+            // Guarda el tipo de usuario para que las otras páginas lo sepan
+            localStorage.setItem('currentUser', tipo === 'administrador' ? 'admin' : 'normal');
+
+            // Redirige a la página correcta
+            if (tipo === 'administrador') {
+                window.location.href = '../Pagina Inicio Admin/TLAdmin.html'; 
+            } else {
+                window.location.href = '../Pagina inicio/TL.html'; 
+            }
+        });
+    </script>
+
+</body>
+</html>
